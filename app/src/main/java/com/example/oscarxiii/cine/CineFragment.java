@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -27,6 +28,16 @@ public class CineFragment extends Fragment {
 
         ListView listaPeli = (ListView) rootView.findViewById(R.id.listaPelis);
         items = new ArrayList<>();
+        String[] data = {
+                "300",
+                "Enemigo a las puertas",
+                "El padrino",
+                "El padrino. Parte II",
+                "Inglorius Bastards",
+                "Inception",
+                "EL club de la ducha"
+        };
+        items = new ArrayList<>(Arrays.asList(data));
         adaptador = new ArrayAdapter<>(
                 getContext(),
                 R.layout.lista_peliculas,
