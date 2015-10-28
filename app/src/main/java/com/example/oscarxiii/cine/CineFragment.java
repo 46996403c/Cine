@@ -91,6 +91,7 @@ public class CineFragment extends Fragment {
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        cineInterface servicio = retrofit.create(cineInterface.class);
     }
 
     public interface cineInterface {
