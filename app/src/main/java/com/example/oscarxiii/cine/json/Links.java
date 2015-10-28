@@ -11,7 +11,7 @@ public class Links {
     private String cast;
     private String reviews;
     private String similar;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private Map<String, Object> additionalProperties = new HashMap<>();
 
     /**
      * @return The self

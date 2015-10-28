@@ -7,7 +7,7 @@ import java.util.Map;
 public class ReleaseDates {
 
     private String theater;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private Map<String, Object> additionalProperties = new HashMap<>();
 
     /**
      * @return The theater

@@ -10,8 +10,8 @@ public class AbridgedCast {
 
     private String name;
     private String id;
-    private List<String> characters = new ArrayList<String>();
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private List<String> characters = new ArrayList<>();
+    private Map<String, Object> additionalProperties = new HashMap<>();
 
     /**
      * @return The name

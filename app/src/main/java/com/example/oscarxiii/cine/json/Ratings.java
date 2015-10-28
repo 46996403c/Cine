@@ -10,7 +10,7 @@ public class Ratings {
     private Integer criticsScore;
     private String audienceRating;
     private Integer audienceScore;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private Map<String, Object> additionalProperties = new HashMap<>();
 
     /**
      * @return The criticsRating
