@@ -17,7 +17,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import retrofit.Call;
+import retrofit.Callback;
 import retrofit.GsonConverterFactory;
+import retrofit.Response;
 import retrofit.Retrofit;
 import retrofit.http.GET;
 import retrofit.http.Query;
@@ -92,6 +94,19 @@ public class CineFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         cineInterface servicio = retrofit.create(cineInterface.class);
+        Call<ApiData> llamada = servicio.getPeliculesMesVistes("es");
+        llamada.enqueue(new Callback<ApiData>() {
+            @Override
+            public void onResponse(Response<ApiData> response, Retrofit retrofit) {
+                if (response.isSuccess()) {
+                    System.out.println("RESULTADO OK");
+                }
+            }
+            @Override
+            public void onFailure(Throwable t) {
+                System.out.println("RESULTADO FAIL");
+            }
+        });
     }
 
     public interface cineInterface {
