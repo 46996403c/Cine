@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Cine.java">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/accionRefrescar"
         android:orderInCategory="100"
         android:title="Refresh"
         app:showAsAction="never" />

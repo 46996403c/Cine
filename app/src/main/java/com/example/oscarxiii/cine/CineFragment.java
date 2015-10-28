@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
+import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -59,5 +59,22 @@ public class CineFragment extends Fragment {
                 );
         listaPeli.setAdapter(adaptador);
         return rootView;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.accionRefrescar) {
+            refresh();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void refresh() {
     }
 }
