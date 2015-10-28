@@ -12,6 +12,8 @@ import android.widget.ListView;
 import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.Arrays;
+import retrofit.GsonConverterFactory;
+import retrofit.Retrofit;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -76,5 +78,11 @@ public class CineFragment extends Fragment {
     }
 
     private void refresh() {
+        //https://api.themoviedb.org/3/movie/550?api_key=c82d8a6c928270dc97f66357f99880a5
+        final String BASE_URL = "https://api.themoviedb.org/3/movie/550";
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
     }
 }
