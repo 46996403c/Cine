@@ -5,15 +5,22 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.view.MenuItem;
+
+import com.example.oscarxiii.cine.json.ApiData;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import retrofit.Call;
 import retrofit.GsonConverterFactory;
 import retrofit.Retrofit;
+import retrofit.http.GET;
+import retrofit.http.Query;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -84,5 +91,12 @@ public class CineFragment extends Fragment {
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+    }
+
+    public interface cineInterface {
+        @GET("lists/movies/box_office.json")
+        Call<ApiData> getPeliculesMesVistes(@Query("country") String pais);
+        @GET("lists/movies/upcoming.json")
+        Call<ApiData> getProximesEstrenes(@Query("country") String pais);
     }
 }
