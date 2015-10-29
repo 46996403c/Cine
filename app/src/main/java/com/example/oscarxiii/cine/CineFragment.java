@@ -43,6 +43,8 @@ public class CineFragment extends Fragment {
         ListView listaPeli = (ListView) rootView.findViewById(R.id.listaPelis);
         items = new ArrayList<>();
         String[] data = {
+                " ",
+                /*
                 "300",
                 "Enemigo a las puertas",
                 "El padrino",
@@ -50,6 +52,7 @@ public class CineFragment extends Fragment {
                 "Inglorius Bastards",
                 "Inception",
                 "EL club de la ducha"
+                */
         };
         items = new ArrayList<>(Arrays.asList(data));
         adaptador = new ArrayAdapter<>(
@@ -78,11 +81,12 @@ public class CineFragment extends Fragment {
 
     private void refresh() {
         PelisApi apiPelis = new PelisApi();
+
         apiPelis.getPeliculesMesVistes(adaptador);
     }
     @Override
     public void onStart() {
         super.onStart();
-      //  refresh();
+        refresh();
     }
 }
