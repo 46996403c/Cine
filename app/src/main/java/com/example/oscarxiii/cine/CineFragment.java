@@ -109,8 +109,7 @@ public class CineFragment extends Fragment {
                     }
                 }
                 else{
-                    System.out.println("RESULTADO FAIL");
-                    System.out.println("XXX"+ respuesta.errorBody().toString());
+                    System.out.println("RESULTADO FAIL"+ respuesta.errorBody().toString());
                 }
             }
             @Override
