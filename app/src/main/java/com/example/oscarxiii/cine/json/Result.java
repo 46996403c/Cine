@@ -10,20 +10,20 @@ import java.util.Map;
 public class Result {
 
     private boolean adult;
-    private String backdropPath;
+    private String backdrop_path;
     private List<Integer> genreIds = new ArrayList<Integer>();
     private int id;
-    private String originalLanguage;
-    private String originalTitle;
+    private String original_language;
+    private String original_title;
     private String overview;
-    private String releaseDate;
-    private String posterPath;
+    private String release_date;
+    private String poster_path;
     private double popularity;
     private String title;
     private boolean video;
     private double voteAverage;
     private int voteCount;
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private Map<String, Object> additional_properties = new HashMap<String, Object>();
 
     /**
      *
@@ -49,7 +49,7 @@ public class Result {
      * The backdropPath
      */
     public String getBackdropPath() {
-        return backdropPath;
+        return backdrop_path;
     }
 
     /**
@@ -58,7 +58,7 @@ public class Result {
      * The backdrop_path
      */
     public void setBackdropPath(String backdropPath) {
-        this.backdropPath = backdropPath;
+        this.backdrop_path = backdropPath;
     }
 
     /**
@@ -103,7 +103,7 @@ public class Result {
      * The originalLanguage
      */
     public String getOriginalLanguage() {
-        return originalLanguage;
+        return original_language;
     }
 
     /**
@@ -112,7 +112,7 @@ public class Result {
      * The original_language
      */
     public void setOriginalLanguage(String originalLanguage) {
-        this.originalLanguage = originalLanguage;
+        this.original_language = originalLanguage;
     }
 
     /**
@@ -121,7 +121,7 @@ public class Result {
      * The originalTitle
      */
     public String getOriginalTitle() {
-        return originalTitle;
+        return original_title;
     }
 
     /**
@@ -130,7 +130,7 @@ public class Result {
      * The original_title
      */
     public void setOriginalTitle(String originalTitle) {
-        this.originalTitle = originalTitle;
+        this.original_title = originalTitle;
     }
 
     /**
@@ -157,7 +157,7 @@ public class Result {
      * The releaseDate
      */
     public String getReleaseDate() {
-        return releaseDate;
+        return release_date;
     }
 
     /**
@@ -166,7 +166,7 @@ public class Result {
      * The release_date
      */
     public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
+        this.release_date = releaseDate;
     }
 
     /**
@@ -175,7 +175,7 @@ public class Result {
      * The posterPath
      */
     public String getPosterPath() {
-        return posterPath;
+        return poster_path;
     }
 
     /**
@@ -184,7 +184,7 @@ public class Result {
      * The poster_path
      */
     public void setPosterPath(String posterPath) {
-        this.posterPath = posterPath;
+        this.poster_path = posterPath;
     }
 
     /**
@@ -278,11 +278,11 @@ public class Result {
     }
 
     public Map<String, Object> getAdditionalProperties() {
-        return this.additionalProperties;
+        return this.additional_properties;
     }
 
     public void setAdditionalProperty(String name, Object value) {
-        this.additionalProperties.put(name, value);
+        this.additional_properties.put(name, value);
     }
 
 }

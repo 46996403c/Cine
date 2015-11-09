@@ -10,18 +10,19 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.oscarxiii.cine.json.Result;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class CineFragment extends Fragment {
-    private ArrayList<String> items;
-    private ArrayAdapter<String> adaptador;
+    private ArrayList<Result> items;
+    private AdaptadorPelis adaptador;
+    //rivate ArrayAdapter<String> adaptador;
 
     public CineFragment() {
     }
@@ -56,11 +57,12 @@ public class CineFragment extends Fragment {
                 "EL club de la ducha"
                 */
         };
-        items = new ArrayList<>(Arrays.asList(data));
-        adaptador = new ArrayAdapter<>(
+        //items = new ArrayList<>(Arrays.asList(data));
+        items = new ArrayList<>();
+        adaptador = new AdaptadorPelis(
                 getContext(),
                 R.layout.lista_peliculas,
-                R.id.tvTituloPelis,
+                //R.id.tvTituloPelis,
                 items
                 );
         listaPeli.setAdapter(adaptador);

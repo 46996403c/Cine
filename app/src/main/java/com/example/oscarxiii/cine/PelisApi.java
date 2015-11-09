@@ -27,7 +27,7 @@ public class PelisApi {
         super();
     }
 
-    public void getPeliculesMesVistes(final ArrayAdapter adaptador) {
+    public void getPeliculesMesVistes(final ArrayAdapter<Result> adaptador) {
         Call<PelisPiojo> llamada = servicio.getPeliculesMesVistes();
         llamada.enqueue(new Callback<PelisPiojo>() {
             @Override
@@ -42,7 +42,7 @@ public class PelisApi {
                     }
                     */
                     for (Result peli : apiData.getResults()) {
-                        adaptador.add(peli.getTitle());
+                        adaptador.add(peli);
                     }
                 } else {
                     System.out.println("RESULTADO FAIL: " + respuesta.errorBody().toString());
@@ -56,7 +56,7 @@ public class PelisApi {
         });
     }
 
-    public void getMillorsPelicules(final ArrayAdapter adaptador) {
+    public void getMillorsPelicules(final ArrayAdapter<Result> adaptador) {
         Call<PelisPiojo> llamada = servicio.getMillorsPelicules();
         llamada.enqueue(new Callback<PelisPiojo>() {
             @Override
@@ -66,7 +66,7 @@ public class PelisApi {
                     // System.out.println("RESULTADO OK" + apiData.getMovies().toString());
                     adaptador.clear();
                     for (Result peli : apiData.getResults()){
-                        adaptador.add(peli.getTitle());
+                        adaptador.add(peli);
                     }
                 }
                 else{
