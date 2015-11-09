@@ -1,6 +1,8 @@
 package com.example.oscarxiii.cine;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -81,8 +83,13 @@ public class CineFragment extends Fragment {
 
     private void refresh() {
         PelisApi apiPelis = new PelisApi();
-
-        apiPelis.getPeliculesMesVistes(adaptador);
+        //apiPelis.getPeliculesMesVistes(adaptador);
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+        if (pref.getString("lista_categorias", "0").equals("1")){
+            apiPelis.getPeliculesMesVistes(adaptador);
+        }else if (pref.getString("lista_categorias", "0").equals("0")){
+            apiPelis.getMillorsPelicules(adaptador);
+        }
     }
     @Override
     public void onStart() {

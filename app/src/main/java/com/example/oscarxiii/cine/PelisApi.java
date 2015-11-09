@@ -83,7 +83,7 @@ public class PelisApi {
 
 interface cineInterface {
     @GET("discover/movie?sort_by=popularity.desc&api_key=c82d8a6c928270dc97f66357f99880a5")
-    Call<PelisPiojo> getPeliculesMesVistes();//(
+    Call<PelisPiojo> getPeliculesMesVistes();
 
     @GET("movie/top_rated?api_key=c82d8a6c928270dc97f66357f99880a5")
     Call<PelisPiojo> getMillorsPelicules();
