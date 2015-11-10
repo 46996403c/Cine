@@ -16,6 +16,7 @@ import android.widget.ListView;
 
 import com.example.oscarxiii.cine.json.Result;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -73,6 +74,7 @@ public class CineFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> padre, View vista, int posicion, long id) {
                 Intent intento = new Intent(getContext(), Detalles.class);
+                intento.putExtra("movie", (Serializable) adaptador.getItem(posicion));
                 startActivity(intento);
             }
         });
