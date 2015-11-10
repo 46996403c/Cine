@@ -28,6 +28,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.oscarxiii.cine.Cine" />
         </activity>
+        <activity
+            android:name=".Detalles"
+            android:label="@string/title_activity_detalles"
+            android:parentActivityName=".Cine"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.oscarxiii.cine.Cine" />
+        </activity>
     </application>
 
 </manifest>
