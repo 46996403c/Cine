@@ -15,7 +15,7 @@ import retrofit.http.GET;
 
 public class PelisApi {
     //https://api.themoviedb.org/3/movie/550?api_key=c82d8a6c928270dc97f66357f99880a5
-    final String BASE_URL = "https://api.themoviedb.org/3/";
+    final String BASE_URL = "https://api.themoviedb.org/3/"; //Base de url donde se pasa la informacion de la api
     final String API_KEY = "c82d8a6c928270dc97f66357f99880a5";
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -27,6 +27,10 @@ public class PelisApi {
         super();
     }
 
+    /**
+     * Metodo donde se muestran las peliculas mas vistas, se hace una llamada desde la interfaz
+     * @param adaptador
+     */
     public void getPeliculesMesVistes(final ArrayAdapter<Result> adaptador) {
         Call<PelisPiojo> llamada = servicio.getPeliculesMesVistes();
         llamada.enqueue(new Callback<PelisPiojo>() {
@@ -55,7 +59,10 @@ public class PelisApi {
             }
         });
     }
-
+    /**
+     * Metodo donde se muestran las peliculas mejor valoradas, se hace una llamada desde la interfaz
+     * @param adaptador
+     */
     public void getMillorsPelicules(final ArrayAdapter<Result> adaptador) {
         Call<PelisPiojo> llamada = servicio.getMillorsPelicules();
         llamada.enqueue(new Callback<PelisPiojo>() {
@@ -81,10 +88,15 @@ public class PelisApi {
     }
 }
 
+/**
+ * Interfaces donde se hace la llamada a los metodos segun la opcion que este seleccionada.
+ */
 interface cineInterface {
+    //url donde se pasa la api y los requisitos de visrualizacion
     @GET("discover/movie?sort_by=popularity.desc&api_key=c82d8a6c928270dc97f66357f99880a5")
     Call<PelisPiojo> getPeliculesMesVistes();
 
+    //url donde se pasa la api y los requisitos de visrualizacion
     @GET("movie/top_rated?api_key=c82d8a6c928270dc97f66357f99880a5")
     Call<PelisPiojo> getMillorsPelicules();
 }
