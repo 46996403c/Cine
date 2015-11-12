@@ -18,13 +18,9 @@ import com.example.oscarxiii.cine.json.Result;
 
 import java.util.ArrayList;
 
-/**
- * A placeholder fragment containing a simple view.
- */
 public class CineFragment extends Fragment {
     private ArrayList<Result> items;
     private AdaptadorPelis adaptador;
-    //rivate ArrayAdapter<String> adaptador;
 
     public CineFragment() {
     }
@@ -61,19 +57,14 @@ public class CineFragment extends Fragment {
         };
         //items = new ArrayList<>(Arrays.asList(data));
         items = new ArrayList<>();
-        adaptador = new AdaptadorPelis(
-                getContext(),
-                R.layout.lista_peliculas,
-                //R.id.tvTituloPelis,
-                items
-                );
+        adaptador = new AdaptadorPelis(getContext(),R.layout.lista_peliculas,items);
         listaPeli.setAdapter(adaptador);
 
         listaPeli.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> padre, View vista, int posicion, long id) {
                 Intent intento = new Intent(getContext(), Detalles.class);
-                intento.putExtra("movie", adaptador.getItem(posicion));
+                intento.putExtra("item", adaptador.getItem(posicion));
                 startActivity(intento);
             }
         });
@@ -87,7 +78,6 @@ public class CineFragment extends Fragment {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
         if (id == R.id.accionRefrescar) {
             refresh();
             return true;
@@ -97,7 +87,6 @@ public class CineFragment extends Fragment {
 
     private void refresh() {
         PelisApi apiPelis = new PelisApi();
-        //apiPelis.getPeliculesMesVistes(adaptador);
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
         if (pref.getString("lista_categorias", "0").equals("1")){
             apiPelis.getPeliculesMesVistes(adaptador);

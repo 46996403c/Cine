@@ -7,4 +7,50 @@
     tools:context="com.example.oscarxiii.cine.DetallesFragment">
 
 
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvTituloPelis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:hint="El club de la ducha"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvEstrenosPelis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvTituloPelis"
+                android:ellipsize="end"
+                android:hint="14-04-1993"
+                android:maxLines="1"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvPelisPopus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvEstrenosPelis"
+                android:hint="91%"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvDescripcion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvPelisPopus"
+                android:ellipsize="end"
+                android:hint="Sinopsis"
+                android:textSize="16sp" />
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

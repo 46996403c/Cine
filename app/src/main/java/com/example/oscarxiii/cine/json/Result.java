@@ -1,7 +1,6 @@
 package com.example.oscarxiii.cine.json;
-import android.os.Parcel;
-import android.os.Parcelable;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -9,7 +8,7 @@ import java.util.Map;
 
 
 
-public class Result implements Parcelable {
+public class Result implements Serializable{
 
     private boolean adult;
     private String backdrop_path;
@@ -26,26 +25,6 @@ public class Result implements Parcelable {
     private double voteAverage;
     private int voteCount;
     private Map<String, Object> additional_properties = new HashMap<String, Object>();
-
-    public static final Parcelable.Creator<Result> CREATOR = new Parcelable.Creator<Result>() {
-        public Result createFromParcel(Parcel source) {
-            return new Result(source);
-        }
-
-        public Result[] newArray(int size) {
-            return new Result[size];
-        }
-    };
-    public Result(){
-
-    }
-    protected Result(Parcel in) {
-        this.release_date = in.readString();
-        this.popularity=(Double) in.readValue(Double.class.getClassLoader());
-        this.title=in.readString();
-        this.voteAverage= (Double) in.readValue(Double.class.getClassLoader());
-        this.voteCount= (Integer)in.readValue(Integer.class.getClassLoader());
-    }
 
     /**
      *
@@ -306,18 +285,5 @@ public class Result implements Parcelable {
     public void setAdditionalProperty(String name, Object value) {
         this.additional_properties.put(name, value);
     }
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-
-        dest.writeString(this.title);
-        dest.writeString(this.release_date);
-        dest.writeValue(this.popularity);
-        dest.writeValue(this.voteAverage);
-        dest.writeValue(this.voteCount);
-    }
 }

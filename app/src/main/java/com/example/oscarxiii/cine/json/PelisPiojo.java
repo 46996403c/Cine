@@ -1,35 +1,18 @@
 package com.example.oscarxiii.cine.json;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class PelisPiojo implements Parcelable {
+public class PelisPiojo implements Serializable{
 
     private int page;
     private List<Result> results = new ArrayList<Result>();
     private int totalPages;
     private int totalResults;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
-
-    public static final Parcelable.Creator<PelisPiojo> CREATOR = new Parcelable.Creator<PelisPiojo>() {
-        public PelisPiojo createFromParcel(Parcel source) {
-            return new PelisPiojo(source);
-        }
-        public PelisPiojo[] newArray(int size) {
-            return new PelisPiojo[size];
-        }
-    };
-    public PelisPiojo() {
-    }
-
-    protected PelisPiojo(Parcel in) {
-        this.results = in.createTypedArrayList(Result.CREATOR);
-    }
 
     /**
      *
@@ -110,13 +93,5 @@ public class PelisPiojo implements Parcelable {
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
     }
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeTypedList(results);
-    }
 }
