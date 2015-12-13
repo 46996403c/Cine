@@ -93,10 +93,10 @@ public class PelisApi {
  */
 interface cineInterface {
     //url donde se pasa la api y los requisitos de visrualizacion
-    @GET("discover/movie?sort_by=popularity.desc&api_key=c82d8a6c928270dc97f66357f99880a5")
+    @GET("discover/movie?sort_by=popularity.desc&api_key=c82d8a6c928270dc97f66357f99880a5&language=es&include_image_language=es")
     Call<PelisPiojo> getPeliculesMesVistes();
 
     //url donde se pasa la api y los requisitos de visrualizacion
-    @GET("movie/top_rated?api_key=c82d8a6c928270dc97f66357f99880a5")
+    @GET("movie/top_rated?api_key=c82d8a6c928270dc97f66357f99880a5&language=es&include_image_language=es")
     Call<PelisPiojo> getMillorsPelicules();
 }
