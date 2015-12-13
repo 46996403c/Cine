@@ -19,10 +19,20 @@
 
     <string name="pref_title_add_friends_to_messages">Categoria: </string>
     <string-array name="pref_example_list_titles">
-        <item>Peliculas mas Vistas</item>
+        <item>Peliculas mas vistas</item>
         <item>Peliculas mejor valoradas</item>
     </string-array>
     <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+    </string-array>
+
+    <string name="idiomas_resultados">Idioma de los resultados: </string>
+    <string-array name="pref_idioma_lista_titulos">
+        <item>Español</item>
+        <item>Ingles</item>
+    </string-array>
+    <string-array name="pref_idioma_lista_valores">
         <item>1</item>
         <item>0</item>
     </string-array>

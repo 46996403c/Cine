@@ -88,10 +88,14 @@ public class CineFragment extends Fragment {
     private void refresh() {
         PelisApi apiPelis = new PelisApi();
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
-        if (pref.getString("lista_categorias", "0").equals("1")){
+        if (pref.getString("lista_categorias", "0").equals("1") && pref.getString("lista_idiomas", "0").equals("1")){
             apiPelis.getPeliculesMesVistes(adaptador);
-        }else if (pref.getString("lista_categorias", "0").equals("0")){
+        }else if (pref.getString("lista_categorias", "0").equals("1") && pref.getString("lista_idiomas", "0").equals("0")){
+            apiPelis.getPeliculesMesVistesIngles(adaptador);
+        }else if (pref.getString("lista_categorias", "0").equals("0") && pref.getString("lista_idiomas", "0").equals("1")){
             apiPelis.getMillorsPelicules(adaptador);
+        }else if (pref.getString("lista_categorias", "0").equals("0") && pref.getString("lista_idiomas", "0").equals("0")){
+            apiPelis.getMillorsPeliculesIngles(adaptador);
         }
     }
     @Override

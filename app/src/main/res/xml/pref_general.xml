@@ -36,4 +36,13 @@
         android:negativeButtonText="@null"
         android:positiveButtonText="@null" />
 
+    <ListPreference
+        android:key="lista_idiomas"
+        android:title="@string/idiomas_resultados"
+        android:defaultValue="1"
+        android:entries="@array/pref_idioma_lista_titulos"
+        android:entryValues="@array/pref_idioma_lista_valores"
+        android:negativeButtonText="@null"
+        android:positiveButtonText="@null" />
+
 </PreferenceScreen>

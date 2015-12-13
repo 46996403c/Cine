@@ -59,12 +59,66 @@ public class PelisApi {
             }
         });
     }
+
+    public void getPeliculesMesVistesIngles(final ArrayAdapter<Result> adaptador) {
+        Call<PelisPiojo> llamada = servicio.getPeliculesMesVistesIngles();
+        llamada.enqueue(new Callback<PelisPiojo>() {
+            @Override
+            public void onResponse(Response<PelisPiojo> respuesta, Retrofit retrofit) {
+                if (respuesta.isSuccess()) {
+                    PelisPiojo apiData = respuesta.body();
+                    // System.out.println("RESULTADO OK" + apiData.getMovies().toString());
+                    adaptador.clear();
+                    /*
+                    for (Movie peli : apiData.getMovies()) {
+                        adaptador.add(peli.getTitle());
+                    }
+                    */
+                    for (Result peli : apiData.getResults()) {
+                        adaptador.add(peli);
+                    }
+                } else {
+                    System.out.println("RESULTADO FAIL: " + respuesta.errorBody().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                System.out.println("RESULTADO FAIL --> onFailure");
+            }
+        });
+    }
+
     /**
      * Metodo donde se muestran las peliculas mejor valoradas, se hace una llamada desde la interfaz
      * @param adaptador
      */
     public void getMillorsPelicules(final ArrayAdapter<Result> adaptador) {
         Call<PelisPiojo> llamada = servicio.getMillorsPelicules();
+        llamada.enqueue(new Callback<PelisPiojo>() {
+            @Override
+            public void onResponse(Response<PelisPiojo> respuesta, Retrofit retrofit) {
+                if (respuesta.isSuccess()) {
+                    PelisPiojo apiData = respuesta.body();
+                    // System.out.println("RESULTADO OK" + apiData.getMovies().toString());
+                    adaptador.clear();
+                    for (Result peli : apiData.getResults()){
+                        adaptador.add(peli);
+                    }
+                }
+                else{
+                    System.out.println("RESULTADO FAIL: "+ respuesta.errorBody().toString());
+                }
+            }
+            @Override
+            public void onFailure(Throwable t) {
+                System.out.println("RESULTADO FAIL --> onFailure");
+            }
+        });
+    }
+
+    public void getMillorsPeliculesIngles(final ArrayAdapter<Result> adaptador) {
+        Call<PelisPiojo> llamada = servicio.getMillorsPeliculesIngles();
         llamada.enqueue(new Callback<PelisPiojo>() {
             @Override
             public void onResponse(Response<PelisPiojo> respuesta, Retrofit retrofit) {
@@ -96,7 +150,14 @@ interface cineInterface {
     @GET("discover/movie?sort_by=popularity.desc&api_key=c82d8a6c928270dc97f66357f99880a5&language=es&include_image_language=es")
     Call<PelisPiojo> getPeliculesMesVistes();
 
+    @GET("discover/movie?sort_by=popularity.desc&api_key=c82d8a6c928270dc97f66357f99880a5&language=en&include_image_language=en")
+    Call<PelisPiojo> getPeliculesMesVistesIngles();
+
     //url donde se pasa la api y los requisitos de visrualizacion
     @GET("movie/top_rated?api_key=c82d8a6c928270dc97f66357f99880a5&language=es&include_image_language=es")
     Call<PelisPiojo> getMillorsPelicules();
+
+    @GET("movie/top_rated?api_key=c82d8a6c928270dc97f66357f99880a5&language=en&include_image_language=en")
+    Call<PelisPiojo> getMillorsPeliculesIngles();
+
 }

@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvPelisPopus"
             android:ellipsize="end"
-            android:hint="BASUROTEEE"
+            android:hint="PRUEBA"
             android:maxLines="1"
             android:textSize="12sp" />
 
