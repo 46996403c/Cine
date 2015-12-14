@@ -38,6 +38,8 @@ public class AdaptadorPelis extends ArrayAdapter<Result>{
         TextView tituloTV = (TextView) verPeli.findViewById(R.id.tvTituloPelis);
         TextView popuTV = (TextView) verPeli.findViewById(R.id.tvPelisPopus);
         TextView estrenoTV = (TextView) verPeli.findViewById(R.id.tvEstrenosPelis);
+        //ImageView posterIV = (ImageView) verPeli.findViewById(R.id.ivPoster);
+
 
         // Fiquem les dades dels objectes (provinents del JSON) en el layout
         tituloTV.setText(pelicula.getTitle());
