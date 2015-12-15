@@ -37,6 +37,16 @@
         <item>0</item>
     </string-array>
 
+    <string name="posters_cine">Previem de los posters: </string>
+    <string-array name="pref_poster_lista_peliculas_cine_titulos">
+        <item>Ver posters</item>
+        <item>No ver posters</item>
+    </string-array>
+    <string-array name="pref_poster_lista_peliculas_cine_valores">
+        <item>1</item>
+        <item>0</item>
+    </string-array>
+
     <!-- Example settings for Data & Sync -->
     <string name="pref_header_data_sync">Data &amp; sync</string>
 

@@ -1,6 +1,8 @@
 package com.example.oscarxiii.cine;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +27,8 @@ public class AdaptadorPelis extends ArrayAdapter<Result>{
     @Override
     public View getView(int posicion, View verPeli, ViewGroup verGrupo) {
 
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+
         // Obtenemos el objecto en la posicion correspondiente
         Result pelicula = getItem(posicion);
 
@@ -46,9 +50,12 @@ public class AdaptadorPelis extends ArrayAdapter<Result>{
         tituloTV.setText(pelicula.getTitle());
         popuTV.setText("Score: " + pelicula.getPopularity() + "%");
         estrenoTV.setText(pelicula.getReleaseDate());
-        final String urlPoster = "http://image.tmdb.org/t/p/";
-        final String definicionPoster = "w780";
-        Picasso.with(getContext()).load(urlPoster+definicionPoster+pelicula.getPosterPath()).into(posterIV);
+        if (pref.getString("ver_poster_lista_peliculas", "0").equals("1")){
+            final String urlPoster = "http://image.tmdb.org/t/p/";
+            final String definicionPoster = "w780";
+            Picasso.with(getContext()).load(urlPoster+definicionPoster+pelicula.getPosterPath()).into(posterIV);
+        }
+
 
 
         // Devolvemos la View con los datos para mostrarla

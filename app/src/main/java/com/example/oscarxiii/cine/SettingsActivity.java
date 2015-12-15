@@ -194,6 +194,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             //bindPreferenceSummaryToValue(findPreference("example_text"));
             bindPreferenceSummaryToValue(findPreference("lista_categorias"));
             bindPreferenceSummaryToValue(findPreference("lista_idiomas"));
+            bindPreferenceSummaryToValue(findPreference("ver_poster_lista_peliculas"));
         }
 
         @Override
