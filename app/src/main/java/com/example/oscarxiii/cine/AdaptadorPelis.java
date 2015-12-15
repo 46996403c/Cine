@@ -5,9 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.oscarxiii.cine.json.Result;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -23,31 +25,33 @@ public class AdaptadorPelis extends ArrayAdapter<Result>{
     @Override
     public View getView(int posicion, View verPeli, ViewGroup verGrupo) {
 
-        // Obtenim l'objecte en la posició corresponent
+        // Obtenemos el objecto en la posicion correspondiente
         Result pelicula = getItem(posicion);
-        //Log.w("XXXX", movie.toString());
 
-        // Mirem a veure si la View s'està reusant, si no es així "inflem" la View
+        // Comprovamos si la View se esta reusando, si no es asi "inflamos" la View
         // https://github.com/codepath/android_guides/wiki/Using-an-ArrayAdapter-with-ListView#row-view-recycling
         if (verPeli == null) {
             LayoutInflater inflador = LayoutInflater.from(getContext());
             verPeli = inflador.inflate(R.layout.lista_peliculas, verGrupo, false);
         }
 
-        // Unim el codi en les Views del Layout
+        // Unimos el codigo en las Views del Layout
         TextView tituloTV = (TextView) verPeli.findViewById(R.id.tvTituloPelis);
         TextView popuTV = (TextView) verPeli.findViewById(R.id.tvPelisPopus);
         TextView estrenoTV = (TextView) verPeli.findViewById(R.id.tvEstrenosPelis);
-        //ImageView posterIV = (ImageView) verPeli.findViewById(R.id.ivPoster);
+        ImageView posterIV = (ImageView) verPeli.findViewById(R.id.ivPoster);
 
 
-        // Fiquem les dades dels objectes (provinents del JSON) en el layout
+        // Ponemos los datos de los objectos (provienen del JSON) en el layout
         tituloTV.setText(pelicula.getTitle());
         popuTV.setText("Score: " + pelicula.getPopularity() + "%");
         estrenoTV.setText(pelicula.getReleaseDate());
+        final String urlPoster = "http://image.tmdb.org/t/p/";
+        final String definicionPoster = "w780";
+        Picasso.with(getContext()).load(urlPoster+definicionPoster+pelicula.getPosterPath()).into(posterIV);
 
 
-        // Retornem la View replena per a mostrarla
+        // Devolvemos la View con los datos para mostrarla
         return verPeli;
     }
 }

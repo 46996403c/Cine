@@ -16,35 +16,37 @@
             android:id="@+id/tvTituloPelis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:hint="The Dark Knight"
             android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:id="@+id/tvPelisPopus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/tvTituloPelis"
-            android:layout_below="@+id/tvTituloPelis"
             android:hint="91%"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:layout_below="@+id/tvTituloPelis"
+            android:layout_alignLeft="@+id/tvTituloPelis"
+            android:layout_alignStart="@+id/tvTituloPelis" />
 
         <TextView
             android:id="@+id/tvEstrenosPelis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tvPelisPopus"
             android:ellipsize="end"
             android:hint="PRUEBA"
             android:maxLines="1"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:layout_below="@+id/tvPelisPopus"
+            android:layout_alignLeft="@+id/tvPelisPopus"
+            android:layout_alignStart="@+id/tvPelisPopus" />
 
         <ImageView
             android:id="@+id/ivPoster"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
             android:adjustViewBounds="true"
             android:maxHeight="70dp"
             android:scaleType="fitXY" />
