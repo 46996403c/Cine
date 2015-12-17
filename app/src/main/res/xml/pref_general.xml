@@ -48,7 +48,7 @@
     <ListPreference
         android:key="ver_poster_lista_peliculas"
         android:title="@string/posters_cine"
-        android:defaultValue="1"
+        android:defaultValue="0"
         android:entries="@array/pref_poster_lista_peliculas_cine_titulos"
         android:entryValues="@array/pref_poster_lista_peliculas_cine_valores"
         android:negativeButtonText="@null"

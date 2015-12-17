@@ -37,14 +37,16 @@
         <item>0</item>
     </string-array>
 
-    <string name="posters_cine">Previem de los posters: </string>
+    <string name="posters_cine">Seleccionar modo visibilidad: </string>
     <string-array name="pref_poster_lista_peliculas_cine_titulos">
-        <item>Ver posters</item>
-        <item>No ver posters</item>
+        <item>Ver informacion con posters</item>
+        <item>Ver solo informacion</item>
+        <item>Ver solo posters</item>
     </string-array>
     <string-array name="pref_poster_lista_peliculas_cine_valores">
-        <item>1</item>
         <item>0</item>
+        <item>1</item>
+        <item>2</item>
     </string-array>
 
     <!-- Example settings for Data & Sync -->
