@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 public class CineFragment extends Fragment {
     private ArrayList<Result> items;
     private AdaptadorPelis adaptador;
+    private SwipeRefreshLayout msgRefreshCF;
 
     public CineFragment() {
     }
@@ -58,6 +60,13 @@ public class CineFragment extends Fragment {
                     startActivity(intento);
                 }
             });
+            msgRefreshCF = (SwipeRefreshLayout) rootView.findViewById(R.id.msgRefreshList);
+            msgRefreshCF.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    refresh();
+                }
+            });
             return rootView;
 
         } else if(pref.getString("ver_poster_lista_peliculas", "0").equals("2")){
@@ -74,6 +83,13 @@ public class CineFragment extends Fragment {
                     Intent intento = new Intent(getContext(), Detalles.class);
                     intento.putExtra("item", adaptador.getItem(posicion));
                     startActivity(intento);
+                }
+            });
+            msgRefreshCF = (SwipeRefreshLayout) rootView.findViewById(R.id.msgRefreshGrid);
+            msgRefreshCF.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    refresh();
                 }
             });
             return rootView;
@@ -95,17 +111,24 @@ public class CineFragment extends Fragment {
     }
 
     private void refresh() {
+        msgRefreshCF.setRefreshing(true);
         PelisApi apiPelis = new PelisApi();
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
         if (pref.getString("lista_categorias", "0").equals("1") && pref.getString("lista_idiomas", "0").equals("1")){
             apiPelis.getPeliculesMesVistes(adaptador);
+            msgRefreshCF.setRefreshing(false);
         }else if (pref.getString("lista_categorias", "0").equals("1") && pref.getString("lista_idiomas", "0").equals("0")){
             apiPelis.getPeliculesMesVistesIngles(adaptador);
+            msgRefreshCF.setRefreshing(false);
         }else if (pref.getString("lista_categorias", "0").equals("0") && pref.getString("lista_idiomas", "0").equals("1")){
             apiPelis.getMillorsPelicules(adaptador);
+            msgRefreshCF.setRefreshing(false);
         }else if (pref.getString("lista_categorias", "0").equals("0") && pref.getString("lista_idiomas", "0").equals("0")){
             apiPelis.getMillorsPeliculesIngles(adaptador);
+            msgRefreshCF.setRefreshing(false);
         }
+        msgRefreshCF.setRefreshing(false);
+
     }
     @Override
     public void onStart() {
