@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import com.example.oscarxiii.cine.json.Result;
@@ -39,37 +40,45 @@ public class CineFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_cine, container,false);
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
 
-        ListView listaPeli = (ListView) rootView.findViewById(R.id.listaPelis);
-        items = new ArrayList<>();
-        String[] data = {
-                " ",
-                /*
-                "300",
-                "Enemigo a las puertas",
-                "El padrino",
-                "El padrino. Parte II",
-                "Inglorius Bastards",
-                "Inception",
-                "EL club de la ducha"
-                */
-        };
-        //items = new ArrayList<>(Arrays.asList(data));
-        items = new ArrayList<>();
-        adaptador = new AdaptadorPelis(getContext(),R.layout.lista_peliculas,items);
-        listaPeli.setAdapter(adaptador);
+        if (pref.getString("ver_poster_lista_peliculas", "0").equals("0") || pref.getString("ver_poster_lista_peliculas", "0").equals("1")){
+            View rootView = inflater.inflate(R.layout.fragment_cine, container,false);
+            ListView listaPeli = (ListView) rootView.findViewById(R.id.listaPelis);
 
-        listaPeli.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> padre, View vista, int posicion, long id) {
-                Intent intento = new Intent(getContext(), Detalles.class);
-                intento.putExtra("item", adaptador.getItem(posicion));
-                startActivity(intento);
-            }
-        });
+            items = new ArrayList<>();
+            adaptador = new AdaptadorPelis(getContext(),R.layout.lista_peliculas,items);
+            listaPeli.setAdapter(adaptador);
 
-        return rootView;
+            listaPeli.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> padre, View vista, int posicion, long id) {
+                    Intent intento = new Intent(getContext(), Detalles.class);
+                    intento.putExtra("item", adaptador.getItem(posicion));
+                    startActivity(intento);
+                }
+            });
+            return rootView;
+
+        } else if(pref.getString("ver_poster_lista_peliculas", "0").equals("2")){
+            View rootView = inflater.inflate(R.layout.fragment_cine, container,false);
+            GridView listaPeli = (GridView) rootView.findViewById(R.id.gridPelis);
+
+            items = new ArrayList<>();
+            adaptador = new AdaptadorPelis(getContext(),R.layout.grid_peliculas,items);
+            listaPeli.setAdapter(adaptador);
+
+            listaPeli.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> padre, View vista, int posicion, long id) {
+                    Intent intento = new Intent(getContext(), Detalles.class);
+                    intento.putExtra("item", adaptador.getItem(posicion));
+                    startActivity(intento);
+                }
+            });
+            return rootView;
+        }
+        return null;
     }
 
     @Override
