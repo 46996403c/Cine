@@ -73,8 +73,8 @@ public class AdaptadorPelis extends ArrayAdapter<Result>{
 
             //Ponemos los datos de los objectos (provienen del JSON) en el layout
             final String urlPoster = "http://image.tmdb.org/t/p/";
-            final String definicionPoster = "w780";
-            Picasso.with(getContext()).load(urlPoster+definicionPoster+pelicula.getPosterPath()).into(posterIV);
+            final String definicionPoster = "w185";
+            Picasso.with(getContext()).load(urlPoster + definicionPoster + pelicula.getPosterPath()).resize(480,500).into(posterIV);
 
             // Devolvemos la View con los datos para mostrarla
             return verPeli;
