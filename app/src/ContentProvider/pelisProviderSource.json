@@ -1,0 +1,30 @@
+{
+  "documentation": "BBDD de peliculas.",
+  "fields": [
+    {
+      "documentation": "Titulo de la pelicula",
+      "name": "titulo_peli",
+      "type": "String",
+    },
+    {
+      "documentation": "Fecha de salida de la pelicula.",
+      "name": "fecha_peli",
+      "type": "String"
+    },
+    {
+      "documentation": "Popularidad de la pelicula",
+      "name": "popu_pli",
+      "type": "Double"
+    },
+    {
+      "documentation": "Sinopsis de la pelicula",
+      "name": "sinosis_peli",
+      "type": "String"
+    },
+    {
+      "documentation": "Poster de la pelicula",
+      "name": "poster_peli",
+      "type": "String"
+    }
+  ]
+}

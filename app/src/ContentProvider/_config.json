@@ -1,0 +1,13 @@
+{
+  "syntaxVersion": 3,
+  "projectPackageId": "com.example.oscarxiii.cine",
+  "authority": "com.example.oscarxiii.cine.provider",
+  "providerJavaPackage": "com.example.oscarxiii.cine.provider",
+  "providerClassName": "PelisProvider",
+  "sqliteOpenHelperClassName": "ExampleSQLiteOpenHelper",
+  "sqliteOpenHelperCallbacksClassName": "ExampleSQLiteOpenHelperCallbacks",
+  "databaseFileName": "cineXIII.db",
+  "databaseVersion": 1,
+  "enableForeignKeys": true,
+  "useAnnotations": true
+}
