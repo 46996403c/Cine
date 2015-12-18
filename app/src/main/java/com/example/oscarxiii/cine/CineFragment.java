@@ -60,7 +60,7 @@ public class CineFragment extends Fragment {
                     startActivity(intento);
                 }
             });
-            msgRefreshCF = (SwipeRefreshLayout) rootView.findViewById(R.id.msgRefreshList);
+            msgRefreshCF = (SwipeRefreshLayout) rootView.findViewById(R.id.msgRefresh);
             msgRefreshCF.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
@@ -85,7 +85,7 @@ public class CineFragment extends Fragment {
                     startActivity(intento);
                 }
             });
-            msgRefreshCF = (SwipeRefreshLayout) rootView.findViewById(R.id.msgRefreshGrid);
+            msgRefreshCF = (SwipeRefreshLayout) rootView.findViewById(R.id.msgRefresh);
             msgRefreshCF.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
@@ -116,16 +116,12 @@ public class CineFragment extends Fragment {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
         if (pref.getString("lista_categorias", "0").equals("1") && pref.getString("lista_idiomas", "0").equals("1")){
             apiPelis.getPeliculesMesVistes(adaptador);
-            msgRefreshCF.setRefreshing(false);
         }else if (pref.getString("lista_categorias", "0").equals("1") && pref.getString("lista_idiomas", "0").equals("0")){
             apiPelis.getPeliculesMesVistesIngles(adaptador);
-            msgRefreshCF.setRefreshing(false);
         }else if (pref.getString("lista_categorias", "0").equals("0") && pref.getString("lista_idiomas", "0").equals("1")){
             apiPelis.getMillorsPelicules(adaptador);
-            msgRefreshCF.setRefreshing(false);
         }else if (pref.getString("lista_categorias", "0").equals("0") && pref.getString("lista_idiomas", "0").equals("0")){
             apiPelis.getMillorsPeliculesIngles(adaptador);
-            msgRefreshCF.setRefreshing(false);
         }
         msgRefreshCF.setRefreshing(false);
 
