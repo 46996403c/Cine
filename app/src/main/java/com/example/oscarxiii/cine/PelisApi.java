@@ -1,6 +1,7 @@
 package com.example.oscarxiii.cine;
 
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.widget.ArrayAdapter;
 
@@ -8,6 +9,8 @@ import com.example.oscarxiii.cine.json.PelisPiojo;
 import com.example.oscarxiii.cine.json.Result;
 import com.example.oscarxiii.cine.provider.pelisprovider.PelisproviderColumns;
 import com.example.oscarxiii.cine.provider.pelisprovider.PelisproviderContentValues;
+
+import java.util.ArrayList;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -51,6 +54,7 @@ public class PelisApi {
                         adaptador.add(peli.getTitle());
                     }
                     */
+                    ArrayList<ContentValues> listaValores = new ArrayList<>();
                     for (Result peli : apiData.getResults()) {
                         //adaptador.add(peli);
                         PelisproviderContentValues valores = new PelisproviderContentValues();
@@ -60,9 +64,11 @@ public class PelisApi {
                         valores.putSinopsisPeli(peli.getOverview());
                         valores.putPosterPeli(peli.getPosterPath());
                         valores.putSincroTime(sincoTime);
-
-                        contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
+                        //Insertamos la pelicula
+                        //contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
                     }
+                    //Insertamos todas las peliculas
+                    contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
                 } else {
                     System.out.println("RESULTADO FAIL: " + respuesta.errorBody().toString());
                 }
@@ -90,6 +96,7 @@ public class PelisApi {
                         adaptador.add(peli.getTitle());
                     }
                     */
+                    ArrayList<ContentValues> listaValores = new ArrayList<>();
                     for (Result peli : apiData.getResults()) {
                         //adaptador.add(peli);
                         PelisproviderContentValues valores = new PelisproviderContentValues();
@@ -99,9 +106,11 @@ public class PelisApi {
                         valores.putSinopsisPeli(peli.getOverview());
                         valores.putPosterPeli(peli.getPosterPath());
                         valores.putSincroTime(sincoTime);
-
-                        contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
+                        //Insertamos la pelicula
+                        //contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
                     }
+                    //Insertamos todas las peliculas
+                    contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
                 } else {
                     System.out.println("RESULTADO FAIL: " + respuesta.errorBody().toString());
                 }
@@ -128,7 +137,8 @@ public class PelisApi {
                     // System.out.println("RESULTADO OK" + apiData.getMovies().toString());
                     long sincoTime = System.currentTimeMillis();
                     //adaptador.clear();
-                    for (Result peli : apiData.getResults()){
+                    ArrayList<ContentValues> listaValores = new ArrayList<>();
+                    for (Result peli : apiData.getResults()) {
                         //adaptador.add(peli);
                         PelisproviderContentValues valores = new PelisproviderContentValues();
                         valores.putTituloPeli(peli.getTitle());
@@ -137,11 +147,12 @@ public class PelisApi {
                         valores.putSinopsisPeli(peli.getOverview());
                         valores.putPosterPeli(peli.getPosterPath());
                         valores.putSincroTime(sincoTime);
-
-                        contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
+                        //Insertamos la pelicula
+                        //contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
                     }
-                }
-                else{
+                    //Insertamos todas las peliculas
+                    contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
+                }else{
                     System.out.println("RESULTADO FAIL: "+ respuesta.errorBody().toString());
                 }
             }
@@ -162,6 +173,7 @@ public class PelisApi {
                     // System.out.println("RESULTADO OK" + apiData.getMovies().toString());
                     long sincoTime = System.currentTimeMillis();
                     //adaptador.clear();
+                    ArrayList<ContentValues> listaValores = new ArrayList<>();
                     for (Result peli : apiData.getResults()){
                         //adaptador.add(peli);
                         PelisproviderContentValues valores = new PelisproviderContentValues();
@@ -171,9 +183,11 @@ public class PelisApi {
                         valores.putSinopsisPeli(peli.getOverview());
                         valores.putPosterPeli(peli.getPosterPath());
                         valores.putSincroTime(sincoTime);
-
-                        contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
+                        //Insertamos la pelicula
+                        //contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
                     }
+                    //Insertamos todas las peliculas
+                    contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
                 }
                 else{
                     System.out.println("RESULTADO FAIL: "+ respuesta.errorBody().toString());
