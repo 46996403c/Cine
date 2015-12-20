@@ -6,6 +6,7 @@ import android.widget.ArrayAdapter;
 
 import com.example.oscarxiii.cine.json.PelisPiojo;
 import com.example.oscarxiii.cine.json.Result;
+import com.example.oscarxiii.cine.provider.pelisprovider.PelisproviderColumns;
 import com.example.oscarxiii.cine.provider.pelisprovider.PelisproviderContentValues;
 
 import retrofit.Call;
@@ -59,6 +60,8 @@ public class PelisApi {
                         valores.putSinopsisPeli(peli.getOverview());
                         valores.putPosterPeli(peli.getPosterPath());
                         valores.putSincroTime(sincoTime);
+
+                        contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
                     }
                 } else {
                     System.out.println("RESULTADO FAIL: " + respuesta.errorBody().toString());
@@ -96,6 +99,8 @@ public class PelisApi {
                         valores.putSinopsisPeli(peli.getOverview());
                         valores.putPosterPeli(peli.getPosterPath());
                         valores.putSincroTime(sincoTime);
+
+                        contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
                     }
                 } else {
                     System.out.println("RESULTADO FAIL: " + respuesta.errorBody().toString());
@@ -132,6 +137,8 @@ public class PelisApi {
                         valores.putSinopsisPeli(peli.getOverview());
                         valores.putPosterPeli(peli.getPosterPath());
                         valores.putSincroTime(sincoTime);
+
+                        contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
                     }
                 }
                 else{
@@ -164,6 +171,8 @@ public class PelisApi {
                         valores.putSinopsisPeli(peli.getOverview());
                         valores.putPosterPeli(peli.getPosterPath());
                         valores.putSincroTime(sincoTime);
+
+                        contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
                     }
                 }
                 else{
