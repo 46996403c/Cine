@@ -10,26 +10,26 @@ import android.os.Build;
 import android.util.Log;
 
 import com.example.oscarxiii.cine.BuildConfig;
-import com.example.oscarxiii.cine.provider.pelisprovidersource.PelisprovidersourceColumns;
+import com.example.oscarxiii.cine.provider.pelisprovider.PelisproviderColumns;
 
 public class ExampleSQLiteOpenHelper extends SQLiteOpenHelper {
     private static final String TAG = ExampleSQLiteOpenHelper.class.getSimpleName();
 
-    public static final String DATABASE_FILE_NAME = "cineXIII.db";
+    public static final String DATABASE_FILE_NAME = "pelisXIII.db";
     private static final int DATABASE_VERSION = 1;
     private static ExampleSQLiteOpenHelper sInstance;
     private final Context mContext;
     private final ExampleSQLiteOpenHelperCallbacks mOpenHelperCallbacks;
 
     // @formatter:off
-    public static final String SQL_CREATE_TABLE_PELISPROVIDERSOURCE = "CREATE TABLE IF NOT EXISTS "
-            + PelisprovidersourceColumns.TABLE_NAME + " ( "
-            + PelisprovidersourceColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + PelisprovidersourceColumns.TITULO_PELI + " TEXT, "
-            + PelisprovidersourceColumns.FECHA_PELI + " TEXT, "
-            + PelisprovidersourceColumns.POPU_PLI + " REAL, "
-            + PelisprovidersourceColumns.SINOSIS_PELI + " TEXT, "
-            + PelisprovidersourceColumns.POSTER_PELI + " TEXT "
+    public static final String SQL_CREATE_TABLE_PELISPROVIDER = "CREATE TABLE IF NOT EXISTS "
+            + PelisproviderColumns.TABLE_NAME + " ( "
+            + PelisproviderColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + PelisproviderColumns.TITULO_PELI + " TEXT, "
+            + PelisproviderColumns.FECHA_PELI + " TEXT, "
+            + PelisproviderColumns.POPU_PLI + " REAL, "
+            + PelisproviderColumns.SINOPSIS_PELI + " TEXT, "
+            + PelisproviderColumns.POSTER_PELI + " TEXT "
             + " );";
 
     // @formatter:on
@@ -86,7 +86,7 @@ public class ExampleSQLiteOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         if (BuildConfig.DEBUG) Log.d(TAG, "onCreate");
         mOpenHelperCallbacks.onPreCreate(mContext, db);
-        db.execSQL(SQL_CREATE_TABLE_PELISPROVIDERSOURCE);
+        db.execSQL(SQL_CREATE_TABLE_PELISPROVIDER);
         mOpenHelperCallbacks.onPostCreate(mContext, db);
     }
 

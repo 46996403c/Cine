@@ -1,4 +1,4 @@
-package com.example.oscarxiii.cine.provider.pelisprovidersource;
+package com.example.oscarxiii.cine.provider.pelisprovider;
 
 import com.example.oscarxiii.cine.provider.base.BaseModel;
 
@@ -10,7 +10,7 @@ import android.support.annotation.Nullable;
 /**
  * BBDD de peliculas.
  */
-public interface PelisprovidersourceModel extends BaseModel {
+public interface PelisproviderModel extends BaseModel {
 
     /**
      * Titulo de la pelicula
@@ -38,7 +38,7 @@ public interface PelisprovidersourceModel extends BaseModel {
      * Can be {@code null}.
      */
     @Nullable
-    String getSinosisPeli();
+    String getSinopsisPeli();
 
     /**
      * Poster de la pelicula

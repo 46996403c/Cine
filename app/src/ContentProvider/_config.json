@@ -6,7 +6,7 @@
   "providerClassName": "PelisProvider",
   "sqliteOpenHelperClassName": "ExampleSQLiteOpenHelper",
   "sqliteOpenHelperCallbacksClassName": "ExampleSQLiteOpenHelperCallbacks",
-  "databaseFileName": "cineXIII.db",
+  "databaseFileName": "pelisXIII.db",
   "databaseVersion": 1,
   "enableForeignKeys": true,
   "useAnnotations": true

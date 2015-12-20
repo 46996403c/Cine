@@ -18,7 +18,7 @@
     },
     {
       "documentation": "Sinopsis de la pelicula",
-      "name": "sinosis_peli",
+      "name": "sinopsis_peli",
       "type": "String"
     },
     {

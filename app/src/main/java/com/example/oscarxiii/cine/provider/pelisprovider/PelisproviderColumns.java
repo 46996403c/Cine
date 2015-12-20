@@ -1,16 +1,15 @@
-package com.example.oscarxiii.cine.provider.pelisprovidersource;
+package com.example.oscarxiii.cine.provider.pelisprovider;
 
 import android.net.Uri;
 import android.provider.BaseColumns;
 
 import com.example.oscarxiii.cine.provider.PelisProvider;
-import com.example.oscarxiii.cine.provider.pelisprovidersource.PelisprovidersourceColumns;
 
 /**
  * BBDD de peliculas.
  */
-public class PelisprovidersourceColumns implements BaseColumns {
-    public static final String TABLE_NAME = "pelisprovidersource";
+public class PelisproviderColumns implements BaseColumns {
+    public static final String TABLE_NAME = "pelisprovider";
     public static final Uri CONTENT_URI = Uri.parse(PelisProvider.CONTENT_URI_BASE + "/" + TABLE_NAME);
 
     /**
@@ -36,7 +35,7 @@ public class PelisprovidersourceColumns implements BaseColumns {
     /**
      * Sinopsis de la pelicula
      */
-    public static final String SINOSIS_PELI = "sinosis_peli";
+    public static final String SINOPSIS_PELI = "sinopsis_peli";
 
     /**
      * Poster de la pelicula
@@ -52,7 +51,7 @@ public class PelisprovidersourceColumns implements BaseColumns {
             TITULO_PELI,
             FECHA_PELI,
             POPU_PLI,
-            SINOSIS_PELI,
+            SINOPSIS_PELI,
             POSTER_PELI
     };
     // @formatter:on
@@ -60,11 +59,11 @@ public class PelisprovidersourceColumns implements BaseColumns {
     public static boolean hasColumns(String[] projection) {
         if (projection == null) return true;
         for (String c : projection) {
-            if (c.equals(TITULO_PELI) || c.contains("" + TITULO_PELI)) return true;
-            if (c.equals(FECHA_PELI) || c.contains("" + FECHA_PELI)) return true;
-            if (c.equals(POPU_PLI) || c.contains("" + POPU_PLI)) return true;
-            if (c.equals(SINOSIS_PELI) || c.contains("" + SINOSIS_PELI)) return true;
-            if (c.equals(POSTER_PELI) || c.contains("" + POSTER_PELI)) return true;
+            if (c.equals(TITULO_PELI) || c.contains("." + TITULO_PELI)) return true;
+            if (c.equals(FECHA_PELI) || c.contains("." + FECHA_PELI)) return true;
+            if (c.equals(POPU_PLI) || c.contains("." + POPU_PLI)) return true;
+            if (c.equals(SINOPSIS_PELI) || c.contains("." + SINOPSIS_PELI)) return true;
+            if (c.equals(POSTER_PELI) || c.contains("." + POSTER_PELI)) return true;
         }
         return false;
     }

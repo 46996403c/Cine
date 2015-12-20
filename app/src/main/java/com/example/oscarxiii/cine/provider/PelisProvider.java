@@ -1,18 +1,17 @@
 package com.example.oscarxiii.cine.provider;
 
-import java.util.Arrays;
-
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.oscarxiii.cine.BuildConfig;
 import com.example.oscarxiii.cine.provider.base.BaseContentProvider;
-import com.example.oscarxiii.cine.provider.pelisprovidersource.PelisprovidersourceColumns;
+import com.example.oscarxiii.cine.provider.pelisprovider.PelisproviderColumns;
+
+import java.util.Arrays;
 
 public class PelisProvider extends BaseContentProvider {
     private static final String TAG = PelisProvider.class.getSimpleName();
@@ -25,16 +24,16 @@ public class PelisProvider extends BaseContentProvider {
     public static final String AUTHORITY = "com.example.oscarxiii.cine.provider";
     public static final String CONTENT_URI_BASE = "content://" + AUTHORITY;
 
-    private static final int URI_TYPE_PELISPROVIDERSOURCE = 0;
-    private static final int URI_TYPE_PELISPROVIDERSOURCE_ID = 1;
+    private static final int URI_TYPE_PELISPROVIDER = 0;
+    private static final int URI_TYPE_PELISPROVIDER_ID = 1;
 
 
 
     private static final UriMatcher URI_MATCHER = new UriMatcher(UriMatcher.NO_MATCH);
 
     static {
-        URI_MATCHER.addURI(AUTHORITY, PelisprovidersourceColumns.TABLE_NAME, URI_TYPE_PELISPROVIDERSOURCE);
-        URI_MATCHER.addURI(AUTHORITY, PelisprovidersourceColumns.TABLE_NAME + "/#", URI_TYPE_PELISPROVIDERSOURCE_ID);
+        URI_MATCHER.addURI(AUTHORITY, PelisproviderColumns.TABLE_NAME, URI_TYPE_PELISPROVIDER);
+        URI_MATCHER.addURI(AUTHORITY, PelisproviderColumns.TABLE_NAME + "/#", URI_TYPE_PELISPROVIDER_ID);
     }
 
     @Override
@@ -51,10 +50,10 @@ public class PelisProvider extends BaseContentProvider {
     public String getType(Uri uri) {
         int match = URI_MATCHER.match(uri);
         switch (match) {
-            case URI_TYPE_PELISPROVIDERSOURCE:
-                return TYPE_CURSOR_DIR + PelisprovidersourceColumns.TABLE_NAME;
-            case URI_TYPE_PELISPROVIDERSOURCE_ID:
-                return TYPE_CURSOR_ITEM + PelisprovidersourceColumns.TABLE_NAME;
+            case URI_TYPE_PELISPROVIDER:
+                return TYPE_CURSOR_DIR + PelisproviderColumns.TABLE_NAME;
+            case URI_TYPE_PELISPROVIDER_ID:
+                return TYPE_CURSOR_ITEM + PelisproviderColumns.TABLE_NAME;
 
         }
         return null;
@@ -98,12 +97,12 @@ public class PelisProvider extends BaseContentProvider {
         String id = null;
         int matchedId = URI_MATCHER.match(uri);
         switch (matchedId) {
-            case URI_TYPE_PELISPROVIDERSOURCE:
-            case URI_TYPE_PELISPROVIDERSOURCE_ID:
-                res.table = PelisprovidersourceColumns.TABLE_NAME;
-                res.idColumn = PelisprovidersourceColumns._ID;
-                res.tablesWithJoins = PelisprovidersourceColumns.TABLE_NAME;
-                res.orderBy = PelisprovidersourceColumns.DEFAULT_ORDER;
+            case URI_TYPE_PELISPROVIDER:
+            case URI_TYPE_PELISPROVIDER_ID:
+                res.table = PelisproviderColumns.TABLE_NAME;
+                res.idColumn = PelisproviderColumns._ID;
+                res.tablesWithJoins = PelisproviderColumns.TABLE_NAME;
+                res.orderBy = PelisproviderColumns.DEFAULT_ORDER;
                 break;
 
             default:
@@ -111,7 +110,7 @@ public class PelisProvider extends BaseContentProvider {
         }
 
         switch (matchedId) {
-            case URI_TYPE_PELISPROVIDERSOURCE_ID:
+            case URI_TYPE_PELISPROVIDER_ID:
                 id = uri.getLastPathSegment();
         }
         if (id != null) {

@@ -5,6 +5,7 @@ import android.widget.ArrayAdapter;
 
 import com.example.oscarxiii.cine.json.PelisPiojo;
 import com.example.oscarxiii.cine.json.Result;
+import com.example.oscarxiii.cine.provider.pelisprovider.PelisproviderContentValues;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -39,14 +40,20 @@ public class PelisApi {
                 if (respuesta.isSuccess()) {
                     PelisPiojo apiData = respuesta.body();
                     // System.out.println("RESULTADO OK" + apiData.getMovies().toString());
-                    adaptador.clear();
+                    //adaptador.clear();
                     /*
                     for (Movie peli : apiData.getMovies()) {
                         adaptador.add(peli.getTitle());
                     }
                     */
                     for (Result peli : apiData.getResults()) {
-                        adaptador.add(peli);
+                        //adaptador.add(peli);
+                        PelisproviderContentValues valores = new PelisproviderContentValues();
+                        valores.putTituloPeli(peli.getTitle());
+                        valores.putFechaPeli(peli.getReleaseDate());
+                        valores.putPopuPli(peli.getPopularity());
+                        valores.putSinopsisPeli(peli.getOverview());
+                        valores.putPosterPeli(peli.getPosterPath());
                     }
                 } else {
                     System.out.println("RESULTADO FAIL: " + respuesta.errorBody().toString());
@@ -68,14 +75,20 @@ public class PelisApi {
                 if (respuesta.isSuccess()) {
                     PelisPiojo apiData = respuesta.body();
                     // System.out.println("RESULTADO OK" + apiData.getMovies().toString());
-                    adaptador.clear();
+                    //adaptador.clear();
                     /*
                     for (Movie peli : apiData.getMovies()) {
                         adaptador.add(peli.getTitle());
                     }
                     */
                     for (Result peli : apiData.getResults()) {
-                        adaptador.add(peli);
+                        //adaptador.add(peli);
+                        PelisproviderContentValues valores = new PelisproviderContentValues();
+                        valores.putTituloPeli(peli.getTitle());
+                        valores.putFechaPeli(peli.getReleaseDate());
+                        valores.putPopuPli(peli.getPopularity());
+                        valores.putSinopsisPeli(peli.getOverview());
+                        valores.putPosterPeli(peli.getPosterPath());
                     }
                 } else {
                     System.out.println("RESULTADO FAIL: " + respuesta.errorBody().toString());
@@ -101,9 +114,15 @@ public class PelisApi {
                 if (respuesta.isSuccess()) {
                     PelisPiojo apiData = respuesta.body();
                     // System.out.println("RESULTADO OK" + apiData.getMovies().toString());
-                    adaptador.clear();
+                    //adaptador.clear();
                     for (Result peli : apiData.getResults()){
-                        adaptador.add(peli);
+                        //adaptador.add(peli);
+                        PelisproviderContentValues valores = new PelisproviderContentValues();
+                        valores.putTituloPeli(peli.getTitle());
+                        valores.putFechaPeli(peli.getReleaseDate());
+                        valores.putPopuPli(peli.getPopularity());
+                        valores.putSinopsisPeli(peli.getOverview());
+                        valores.putPosterPeli(peli.getPosterPath());
                     }
                 }
                 else{
@@ -125,9 +144,15 @@ public class PelisApi {
                 if (respuesta.isSuccess()) {
                     PelisPiojo apiData = respuesta.body();
                     // System.out.println("RESULTADO OK" + apiData.getMovies().toString());
-                    adaptador.clear();
+                    //adaptador.clear();
                     for (Result peli : apiData.getResults()){
-                        adaptador.add(peli);
+                        //adaptador.add(peli);
+                        PelisproviderContentValues valores = new PelisproviderContentValues();
+                        valores.putTituloPeli(peli.getTitle());
+                        valores.putFechaPeli(peli.getReleaseDate());
+                        valores.putPopuPli(peli.getPopularity());
+                        valores.putSinopsisPeli(peli.getOverview());
+                        valores.putPosterPeli(peli.getPosterPath());
                     }
                 }
                 else{
