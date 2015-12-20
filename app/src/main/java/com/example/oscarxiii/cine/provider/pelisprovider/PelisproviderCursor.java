@@ -1,12 +1,11 @@
 package com.example.oscarxiii.cine.provider.pelisprovider;
 
-import java.util.Date;
-
 import android.database.Cursor;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.example.oscarxiii.cine.provider.base.AbstractCursor;
+
+import java.util.Date;
 
 /**
  * Cursor wrapper for the {@code pelisprovider} table.
@@ -51,8 +50,8 @@ public class PelisproviderCursor extends AbstractCursor implements Pelisprovider
      * Can be {@code null}.
      */
     @Nullable
-    public Double getPopuPli() {
-        Double res = getDoubleOrNull(PelisproviderColumns.POPU_PLI);
+    public Double getPopuPeli() {
+        Double res = getDoubleOrNull(PelisproviderColumns.POPU_PELI);
         return res;
     }
 
@@ -73,6 +72,17 @@ public class PelisproviderCursor extends AbstractCursor implements Pelisprovider
     @Nullable
     public String getPosterPeli() {
         String res = getStringOrNull(PelisproviderColumns.POSTER_PELI);
+        return res;
+    }
+
+    /**
+     * Sincronizacion
+     * Get the {@code synctime} value.
+     * Can be {@code null}.
+     */
+    @Nullable
+    public Date getSincroTime() {
+        Date res = getDateOrNull(PelisproviderColumns.SINCRO_TIME);
         return res;
     }
 }

@@ -25,6 +25,11 @@
       "documentation": "Poster de la pelicula",
       "name": "poster_peli",
       "type": "String"
+    },
+    {
+      "documentation": "Sincronizacion",
+      "name": "sincro_time",
+      "type": "Date"
     }
   ]
 }

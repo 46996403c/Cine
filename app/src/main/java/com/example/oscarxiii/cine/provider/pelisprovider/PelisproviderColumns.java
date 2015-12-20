@@ -30,7 +30,7 @@ public class PelisproviderColumns implements BaseColumns {
     /**
      * Popularidad de la pelicula
      */
-    public static final String POPU_PLI = "popu_pli";
+    public static final String POPU_PELI = "popu_pli";
 
     /**
      * Sinopsis de la pelicula
@@ -42,6 +42,11 @@ public class PelisproviderColumns implements BaseColumns {
      */
     public static final String POSTER_PELI = "poster_peli";
 
+    /**
+     * Sincronizacion
+     */
+    public static final String SINCRO_TIME = "sincro_time";
+
 
     public static final String DEFAULT_ORDER = TABLE_NAME + "" +_ID;
 
@@ -50,9 +55,10 @@ public class PelisproviderColumns implements BaseColumns {
             _ID,
             TITULO_PELI,
             FECHA_PELI,
-            POPU_PLI,
+            POPU_PELI,
             SINOPSIS_PELI,
-            POSTER_PELI
+            POSTER_PELI,
+            SINCRO_TIME
     };
     // @formatter:on
 
@@ -61,9 +67,10 @@ public class PelisproviderColumns implements BaseColumns {
         for (String c : projection) {
             if (c.equals(TITULO_PELI) || c.contains("." + TITULO_PELI)) return true;
             if (c.equals(FECHA_PELI) || c.contains("." + FECHA_PELI)) return true;
-            if (c.equals(POPU_PLI) || c.contains("." + POPU_PLI)) return true;
+            if (c.equals(POPU_PELI) || c.contains("." + POPU_PELI)) return true;
             if (c.equals(SINOPSIS_PELI) || c.contains("." + SINOPSIS_PELI)) return true;
             if (c.equals(POSTER_PELI) || c.contains("." + POSTER_PELI)) return true;
+            if (c.equals(SINCRO_TIME) || c.contains("." + SINCRO_TIME)) return true;
         }
         return false;
     }

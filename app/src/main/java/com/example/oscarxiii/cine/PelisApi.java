@@ -1,6 +1,7 @@
 package com.example.oscarxiii.cine;
 
 
+import android.content.Context;
 import android.widget.ArrayAdapter;
 
 import com.example.oscarxiii.cine.json.PelisPiojo;
@@ -23,9 +24,11 @@ public class PelisApi {
             .addConverterFactory(GsonConverterFactory.create())
             .build();
     cineInterface servicio = retrofit.create(cineInterface.class);
+    private final Context contexto;
 
-    public PelisApi() {
+    public PelisApi(Context context) {
         super();
+        this.contexto = context;
     }
 
     /**
@@ -41,6 +44,7 @@ public class PelisApi {
                     PelisPiojo apiData = respuesta.body();
                     // System.out.println("RESULTADO OK" + apiData.getMovies().toString());
                     //adaptador.clear();
+                    long sincoTime = System.currentTimeMillis();
                     /*
                     for (Movie peli : apiData.getMovies()) {
                         adaptador.add(peli.getTitle());
@@ -54,6 +58,7 @@ public class PelisApi {
                         valores.putPopuPli(peli.getPopularity());
                         valores.putSinopsisPeli(peli.getOverview());
                         valores.putPosterPeli(peli.getPosterPath());
+                        valores.putSincroTime(sincoTime);
                     }
                 } else {
                     System.out.println("RESULTADO FAIL: " + respuesta.errorBody().toString());
@@ -76,6 +81,7 @@ public class PelisApi {
                     PelisPiojo apiData = respuesta.body();
                     // System.out.println("RESULTADO OK" + apiData.getMovies().toString());
                     //adaptador.clear();
+                    long sincoTime = System.currentTimeMillis();
                     /*
                     for (Movie peli : apiData.getMovies()) {
                         adaptador.add(peli.getTitle());
@@ -89,6 +95,7 @@ public class PelisApi {
                         valores.putPopuPli(peli.getPopularity());
                         valores.putSinopsisPeli(peli.getOverview());
                         valores.putPosterPeli(peli.getPosterPath());
+                        valores.putSincroTime(sincoTime);
                     }
                 } else {
                     System.out.println("RESULTADO FAIL: " + respuesta.errorBody().toString());
@@ -114,6 +121,7 @@ public class PelisApi {
                 if (respuesta.isSuccess()) {
                     PelisPiojo apiData = respuesta.body();
                     // System.out.println("RESULTADO OK" + apiData.getMovies().toString());
+                    long sincoTime = System.currentTimeMillis();
                     //adaptador.clear();
                     for (Result peli : apiData.getResults()){
                         //adaptador.add(peli);
@@ -123,6 +131,7 @@ public class PelisApi {
                         valores.putPopuPli(peli.getPopularity());
                         valores.putSinopsisPeli(peli.getOverview());
                         valores.putPosterPeli(peli.getPosterPath());
+                        valores.putSincroTime(sincoTime);
                     }
                 }
                 else{
@@ -144,6 +153,7 @@ public class PelisApi {
                 if (respuesta.isSuccess()) {
                     PelisPiojo apiData = respuesta.body();
                     // System.out.println("RESULTADO OK" + apiData.getMovies().toString());
+                    long sincoTime = System.currentTimeMillis();
                     //adaptador.clear();
                     for (Result peli : apiData.getResults()){
                         //adaptador.add(peli);
@@ -153,6 +163,7 @@ public class PelisApi {
                         valores.putPopuPli(peli.getPopularity());
                         valores.putSinopsisPeli(peli.getOverview());
                         valores.putPosterPeli(peli.getPosterPath());
+                        valores.putSincroTime(sincoTime);
                     }
                 }
                 else{

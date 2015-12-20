@@ -112,7 +112,7 @@ public class CineFragment extends Fragment {
 
     private void refresh() {
         msgRefreshCF.setRefreshing(true);
-        PelisApi apiPelis = new PelisApi();
+        PelisApi apiPelis = new PelisApi(getContext());
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
         if (pref.getString("lista_categorias", "0").equals("1") && pref.getString("lista_idiomas", "0").equals("1")){
             apiPelis.getPeliculesMesVistes(adaptador);

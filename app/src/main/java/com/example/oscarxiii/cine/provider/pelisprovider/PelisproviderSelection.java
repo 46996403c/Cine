@@ -1,13 +1,13 @@
 package com.example.oscarxiii.cine.provider.pelisprovider;
 
-import java.util.Date;
-
-import android.content.Context;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 
 import com.example.oscarxiii.cine.provider.base.AbstractSelection;
+
+import java.util.Date;
 
 /**
  * Selection for the {@code pelisprovider} table.
@@ -159,42 +159,42 @@ public class PelisproviderSelection extends AbstractSelection<PelisproviderSelec
     }
 
     public PelisproviderSelection popuPli(Double... value) {
-        addEquals(PelisproviderColumns.POPU_PLI, value);
+        addEquals(PelisproviderColumns.POPU_PELI, value);
         return this;
     }
 
     public PelisproviderSelection popuPliNot(Double... value) {
-        addNotEquals(PelisproviderColumns.POPU_PLI, value);
+        addNotEquals(PelisproviderColumns.POPU_PELI, value);
         return this;
     }
 
     public PelisproviderSelection popuPliGt(double value) {
-        addGreaterThan(PelisproviderColumns.POPU_PLI, value);
+        addGreaterThan(PelisproviderColumns.POPU_PELI, value);
         return this;
     }
 
     public PelisproviderSelection popuPliGtEq(double value) {
-        addGreaterThanOrEquals(PelisproviderColumns.POPU_PLI, value);
+        addGreaterThanOrEquals(PelisproviderColumns.POPU_PELI, value);
         return this;
     }
 
     public PelisproviderSelection popuPliLt(double value) {
-        addLessThan(PelisproviderColumns.POPU_PLI, value);
+        addLessThan(PelisproviderColumns.POPU_PELI, value);
         return this;
     }
 
     public PelisproviderSelection popuPliLtEq(double value) {
-        addLessThanOrEquals(PelisproviderColumns.POPU_PLI, value);
+        addLessThanOrEquals(PelisproviderColumns.POPU_PELI, value);
         return this;
     }
 
     public PelisproviderSelection orderByPopuPli(boolean desc) {
-        orderBy(PelisproviderColumns.POPU_PLI, desc);
+        orderBy(PelisproviderColumns.POPU_PELI, desc);
         return this;
     }
 
     public PelisproviderSelection orderByPopuPli() {
-        orderBy(PelisproviderColumns.POPU_PLI, false);
+        orderBy(PelisproviderColumns.POPU_PELI, false);
         return this;
     }
 
@@ -275,6 +275,53 @@ public class PelisproviderSelection extends AbstractSelection<PelisproviderSelec
 
     public PelisproviderSelection orderByPosterPeli() {
         orderBy(PelisproviderColumns.POSTER_PELI, false);
+        return this;
+    }
+
+
+
+    public PelisproviderSelection synctime(Date... value) {
+        addEquals(PelisproviderColumns.SINCRO_TIME, value);
+        return this;
+    }
+
+    public PelisproviderSelection synctimeNot(Date... value) {
+        addNotEquals(PelisproviderColumns.SINCRO_TIME, value);
+        return this;
+    }
+
+    public PelisproviderSelection synctime(Long... value) {
+        addEquals(PelisproviderColumns.SINCRO_TIME, value);
+        return this;
+    }
+
+    public PelisproviderSelection synctimeAfter(Date value) {
+        addGreaterThan(PelisproviderColumns.SINCRO_TIME, value);
+        return this;
+    }
+
+    public PelisproviderSelection synctimeAfterEq(Date value) {
+        addGreaterThanOrEquals(PelisproviderColumns.SINCRO_TIME, value);
+        return this;
+    }
+
+    public PelisproviderSelection synctimeBefore(Date value) {
+        addLessThan(PelisproviderColumns.SINCRO_TIME, value);
+        return this;
+    }
+
+    public PelisproviderSelection synctimeBeforeEq(Date value) {
+        addLessThanOrEquals(PelisproviderColumns.SINCRO_TIME, value);
+        return this;
+    }
+
+    public PelisproviderSelection orderBySynctime(boolean desc) {
+        orderBy(PelisproviderColumns.SINCRO_TIME, desc);
+        return this;
+    }
+
+    public PelisproviderSelection orderBySynctime() {
+        orderBy(PelisproviderColumns.SINCRO_TIME, false);
         return this;
     }
 }

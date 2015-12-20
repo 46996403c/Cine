@@ -27,9 +27,10 @@ public class ExampleSQLiteOpenHelper extends SQLiteOpenHelper {
             + PelisproviderColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + PelisproviderColumns.TITULO_PELI + " TEXT, "
             + PelisproviderColumns.FECHA_PELI + " TEXT, "
-            + PelisproviderColumns.POPU_PLI + " REAL, "
+            + PelisproviderColumns.POPU_PELI + " REAL, "
             + PelisproviderColumns.SINOPSIS_PELI + " TEXT, "
-            + PelisproviderColumns.POSTER_PELI + " TEXT "
+            + PelisproviderColumns.POSTER_PELI + " TEXT, "
+            + PelisproviderColumns.SINCRO_TIME + " INTEGRER "
             + " );";
 
     // @formatter:on

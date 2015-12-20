@@ -1,11 +1,10 @@
 package com.example.oscarxiii.cine.provider.pelisprovider;
 
+import android.support.annotation.Nullable;
+
 import com.example.oscarxiii.cine.provider.base.BaseModel;
 
 import java.util.Date;
-
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 
 /**
  * BBDD de peliculas.
@@ -31,7 +30,7 @@ public interface PelisproviderModel extends BaseModel {
      * Can be {@code null}.
      */
     @Nullable
-    Double getPopuPli();
+    Double getPopuPeli();
 
     /**
      * Sinopsis de la pelicula
@@ -46,4 +45,12 @@ public interface PelisproviderModel extends BaseModel {
      */
     @Nullable
     String getPosterPeli();
+
+    /**
+     * Sincronizacion
+     * Get the {@code synctime} value.
+     * Can be {@code null}.
+     */
+    @Nullable
+    Date getSincroTime();
 }

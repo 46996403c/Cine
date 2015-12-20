@@ -69,12 +69,12 @@ public class PelisproviderContentValues extends AbstractContentValues {
      * Popularidad de la pelicula
      */
     public PelisproviderContentValues putPopuPli(@Nullable Double value) {
-        mContentValues.put(PelisproviderColumns.POPU_PLI, value);
+        mContentValues.put(PelisproviderColumns.POPU_PELI, value);
         return this;
     }
 
     public PelisproviderContentValues putPopuPliNull() {
-        mContentValues.putNull(PelisproviderColumns.POPU_PLI);
+        mContentValues.putNull(PelisproviderColumns.POPU_PELI);
         return this;
     }
 
@@ -101,6 +101,24 @@ public class PelisproviderContentValues extends AbstractContentValues {
 
     public PelisproviderContentValues putPosterPeliNull() {
         mContentValues.putNull(PelisproviderColumns.POSTER_PELI);
+        return this;
+    }
+
+    /**
+     * Sincronizacion
+     */
+    public PelisproviderContentValues putSincroTime(@Nullable Date value) {
+        mContentValues.put(PelisproviderColumns.SINCRO_TIME, value == null ? null : value.getTime());
+        return this;
+    }
+
+    public PelisproviderContentValues putSincroTimeNull() {
+        mContentValues.putNull(PelisproviderColumns.SINCRO_TIME);
+        return this;
+    }
+
+    public PelisproviderContentValues putSincroTime(@Nullable Long value) {
+        mContentValues.put(PelisproviderColumns.SINCRO_TIME, value);
         return this;
     }
 }
