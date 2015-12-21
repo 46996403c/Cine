@@ -37,6 +37,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.oscarxiii.cine.Cine" />
         </activity>
+        <provider
+            android:name="com.example.oscarxiii.cine.provider.PelisProvider"
+            android:authorities="com.example.oscarxiii.cine.provider"
+            android:exported="false" />
     </application>
-
 </manifest>

@@ -3,7 +3,7 @@ package com.example.oscarxiii.cine;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.widget.ArrayAdapter;
+import android.widget.SimpleCursorAdapter;
 
 import com.example.oscarxiii.cine.json.PelisPiojo;
 import com.example.oscarxiii.cine.json.Result;
@@ -39,7 +39,8 @@ public class PelisApi {
      * Metodo donde se muestran las peliculas mas vistas, se hace una llamada desde la interfaz
      * @param adaptador
      */
-    public void getPeliculesMesVistes(final ArrayAdapter<Result> adaptador) {
+    //public void getPeliculesMesVistes(final ArrayAdapter<Result> adaptador) {
+    public void getPeliculesMesVistes(SimpleCursorAdapter adaptador) {
         Call<PelisPiojo> llamada = servicio.getPeliculesMesVistes();
         llamada.enqueue(new Callback<PelisPiojo>() {
             @Override
@@ -65,10 +66,10 @@ public class PelisApi {
                         valores.putPosterPeli(peli.getPosterPath());
                         valores.putSincroTime(sincoTime);
                         //Insertamos la pelicula
-                        //contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
+                        contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
                     }
                     //Insertamos todas las peliculas
-                    contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
+                    //contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
                 } else {
                     System.out.println("RESULTADO FAIL: " + respuesta.errorBody().toString());
                 }
@@ -81,7 +82,8 @@ public class PelisApi {
         });
     }
 
-    public void getPeliculesMesVistesIngles(final ArrayAdapter<Result> adaptador) {
+    //public void getPeliculesMesVistesIngles(final ArrayAdapter<Result> adaptador) {
+    public void getPeliculesMesVistesIngles(SimpleCursorAdapter adaptador) {
         Call<PelisPiojo> llamada = servicio.getPeliculesMesVistesIngles();
         llamada.enqueue(new Callback<PelisPiojo>() {
             @Override
@@ -107,10 +109,10 @@ public class PelisApi {
                         valores.putPosterPeli(peli.getPosterPath());
                         valores.putSincroTime(sincoTime);
                         //Insertamos la pelicula
-                        //contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
+                        contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
                     }
                     //Insertamos todas las peliculas
-                    contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
+                    //contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
                 } else {
                     System.out.println("RESULTADO FAIL: " + respuesta.errorBody().toString());
                 }
@@ -127,7 +129,8 @@ public class PelisApi {
      * Metodo donde se muestran las peliculas mejor valoradas, se hace una llamada desde la interfaz
      * @param adaptador
      */
-    public void getMillorsPelicules(final ArrayAdapter<Result> adaptador) {
+    //public void getMillorsPelicules(final ArrayAdapter<Result> adaptador) {
+    public void getMillorsPelicules(SimpleCursorAdapter adaptador) {
         Call<PelisPiojo> llamada = servicio.getMillorsPelicules();
         llamada.enqueue(new Callback<PelisPiojo>() {
             @Override
@@ -148,10 +151,10 @@ public class PelisApi {
                         valores.putPosterPeli(peli.getPosterPath());
                         valores.putSincroTime(sincoTime);
                         //Insertamos la pelicula
-                        //contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
+                        contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
                     }
                     //Insertamos todas las peliculas
-                    contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
+                    //contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
                 }else{
                     System.out.println("RESULTADO FAIL: "+ respuesta.errorBody().toString());
                 }
@@ -163,7 +166,8 @@ public class PelisApi {
         });
     }
 
-    public void getMillorsPeliculesIngles(final ArrayAdapter<Result> adaptador) {
+    //public void getMillorsPeliculesIngles(final ArrayAdapter<Result> adaptador) {
+    public void getMillorsPeliculesIngles(SimpleCursorAdapter adaptador) {
         Call<PelisPiojo> llamada = servicio.getMillorsPeliculesIngles();
         llamada.enqueue(new Callback<PelisPiojo>() {
             @Override
@@ -184,10 +188,10 @@ public class PelisApi {
                         valores.putPosterPeli(peli.getPosterPath());
                         valores.putSincroTime(sincoTime);
                         //Insertamos la pelicula
-                        //contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
+                        contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
                     }
                     //Insertamos todas las peliculas
-                    contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
+                    //contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
                 }
                 else{
                     System.out.println("RESULTADO FAIL: "+ respuesta.errorBody().toString());

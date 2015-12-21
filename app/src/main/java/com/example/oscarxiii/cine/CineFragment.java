@@ -1,10 +1,14 @@
 package com.example.oscarxiii.cine;
 
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.CursorLoader;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,14 +19,17 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
 import com.example.oscarxiii.cine.json.Result;
+import com.example.oscarxiii.cine.provider.pelisprovider.PelisproviderColumns;
 
 import java.util.ArrayList;
 
-public class CineFragment extends Fragment {
+public class CineFragment extends Fragment implements android.support.v4.app.LoaderManager.LoaderCallbacks<Cursor>{
     private ArrayList<Result> items;
-    private AdaptadorPelis adaptador;
+    //private AdaptadorPelis adaptador;
+    private SimpleCursorAdapter adaptador;
     private SwipeRefreshLayout msgRefreshCF;
 
     public CineFragment() {
@@ -40,6 +47,7 @@ public class CineFragment extends Fragment {
         setHasOptionsMenu(true);
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -49,14 +57,33 @@ public class CineFragment extends Fragment {
             ListView listaPeli = (ListView) rootView.findViewById(R.id.listaPelis);
 
             items = new ArrayList<>();
-            adaptador = new AdaptadorPelis(getContext(),R.layout.lista_peliculas,items);
+            //adaptador = new AdaptadorPelis(getContext(),R.layout.lista_peliculas,items);
+            adaptador = new SimpleCursorAdapter(
+                    getContext(),
+                    R.layout.lista_peliculas,
+                    null,
+                    new String[] {
+                            PelisproviderColumns.POSTER_PELI,
+                            PelisproviderColumns.TITULO_PELI,
+                            PelisproviderColumns.POPU_PELI
+                    },
+                    new int[] {
+                            R.id.ivPoster,
+                            R.id.tvTituloPelis,
+                            R.id.tvPelisPopus
+                    },
+                    0
+            );
+            //Inicialitzem el Loader
+            getLoaderManager().initLoader(0, null, this);
             listaPeli.setAdapter(adaptador);
 
             listaPeli.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> padre, View vista, int posicion, long id) {
                     Intent intento = new Intent(getContext(), Detalles.class);
-                    intento.putExtra("item", adaptador.getItem(posicion));
+                    //intento.putExtra("item", adaptador.getItem(posicion));
+                    intento.putExtra("movie_id", id);
                     startActivity(intento);
                 }
             });
@@ -74,14 +101,31 @@ public class CineFragment extends Fragment {
             GridView listaPeli = (GridView) rootView.findViewById(R.id.gridPelis);
 
             items = new ArrayList<>();
-            adaptador = new AdaptadorPelis(getContext(),R.layout.grid_peliculas,items);
+            //adaptador = new AdaptadorPelis(getContext(),R.layout.grid_peliculas,items);
+            adaptador = new SimpleCursorAdapter(
+                    getContext(),
+                    R.layout.lista_peliculas,
+                    null,
+                    new String[] {
+                            PelisproviderColumns.POSTER_PELI,
+                            PelisproviderColumns.TITULO_PELI,
+                            PelisproviderColumns.POPU_PELI
+                    },
+                    new int[] {
+                            R.id.ivPoster,
+                            R.id.tvTituloPelis,
+                            R.id.tvPelisPopus
+                    },
+                    0
+            );
             listaPeli.setAdapter(adaptador);
 
             listaPeli.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> padre, View vista, int posicion, long id) {
                     Intent intento = new Intent(getContext(), Detalles.class);
-                    intento.putExtra("item", adaptador.getItem(posicion));
+                    //intento.putExtra("item", adaptador.getItem(posicion));
+                    intento.putExtra("movie_id", id);
                     startActivity(intento);
                 }
             });
@@ -130,5 +174,20 @@ public class CineFragment extends Fragment {
     public void onStart() {
         super.onStart();
         refresh();
+    }
+
+    @Override
+    public android.support.v4.content.Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(getContext(), PelisproviderColumns.CONTENT_URI, null, null, null, null);
+    }
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    @Override
+    public void onLoadFinished(android.support.v4.content.Loader<Cursor> loader, Cursor data) {
+        adaptador.swapCursor(data);
+    }
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    @Override
+    public void onLoaderReset(android.support.v4.content.Loader<Cursor> loader) {
+        adaptador.swapCursor(null);
     }
 }
