@@ -176,7 +176,7 @@ public class CineFragment extends Fragment implements android.support.v4.app.Loa
 
     @Override
     public android.support.v4.content.Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(getContext(), PelisproviderColumns.CONTENT_URI, null, null, null, null);
+        return new CursorLoader(getContext(), PelisproviderColumns.CONTENT_URI, null, null, null, "_id");
     }
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override

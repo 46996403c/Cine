@@ -9,6 +9,7 @@ import com.example.oscarxiii.cine.json.PelisPiojo;
 import com.example.oscarxiii.cine.json.Result;
 import com.example.oscarxiii.cine.provider.pelisprovider.PelisproviderColumns;
 import com.example.oscarxiii.cine.provider.pelisprovider.PelisproviderContentValues;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -67,9 +68,14 @@ public class PelisApi {
                         valores.putSincroTime(sincoTime);
                         //Insertamos la pelicula
                         contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
+                        Picasso.with(contexto).load(peli.getPosterPath()).fetch();
                     }
                     //Insertamos todas las peliculas
                     //contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
+                    contexto.getContentResolver().delete(
+                            PelisproviderColumns.CONTENT_URI,
+                            PelisproviderColumns.SINCRO_TIME+ " < ?",
+                            new String[]{Long.toString(sincoTime)});
                 } else {
                     System.out.println("RESULTADO FAIL: " + respuesta.errorBody().toString());
                 }
@@ -110,9 +116,14 @@ public class PelisApi {
                         valores.putSincroTime(sincoTime);
                         //Insertamos la pelicula
                         contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
+                        Picasso.with(contexto).load(peli.getPosterPath()).fetch();
                     }
                     //Insertamos todas las peliculas
                     //contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
+                    contexto.getContentResolver().delete(
+                            PelisproviderColumns.CONTENT_URI,
+                            PelisproviderColumns.SINCRO_TIME+ " < ?",
+                            new String[]{Long.toString(sincoTime)});
                 } else {
                     System.out.println("RESULTADO FAIL: " + respuesta.errorBody().toString());
                 }
@@ -152,9 +163,14 @@ public class PelisApi {
                         valores.putSincroTime(sincoTime);
                         //Insertamos la pelicula
                         contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
+                        Picasso.with(contexto).load(peli.getPosterPath()).fetch();
                     }
                     //Insertamos todas las peliculas
                     //contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
+                    contexto.getContentResolver().delete(
+                            PelisproviderColumns.CONTENT_URI,
+                            PelisproviderColumns.SINCRO_TIME+ " < ?",
+                            new String[]{Long.toString(sincoTime)});
                 }else{
                     System.out.println("RESULTADO FAIL: "+ respuesta.errorBody().toString());
                 }
@@ -189,9 +205,14 @@ public class PelisApi {
                         valores.putSincroTime(sincoTime);
                         //Insertamos la pelicula
                         contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
+                        Picasso.with(contexto).load(peli.getPosterPath()).fetch();
                     }
                     //Insertamos todas las peliculas
                     //contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
+                    contexto.getContentResolver().delete(
+                            PelisproviderColumns.CONTENT_URI,
+                            PelisproviderColumns.SINCRO_TIME+ " < ?",
+                            new String[]{Long.toString(sincoTime)});
                 }
                 else{
                     System.out.println("RESULTADO FAIL: "+ respuesta.errorBody().toString());

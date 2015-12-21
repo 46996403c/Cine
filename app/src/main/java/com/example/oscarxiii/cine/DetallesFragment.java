@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.oscarxiii.cine.json.Result;
-import com.squareup.picasso.Picasso;
 
 public class DetallesFragment extends Fragment {
     private TextView titulo;
@@ -37,14 +36,29 @@ public class DetallesFragment extends Fragment {
 
         Toast.makeText(getContext(), item.getOriginalTitle(), Toast.LENGTH_LONG).show();
 
-        titulo.setText("Titulo: "+item.getTitle());
-        data.setText("Fecha de salida: "+item.getReleaseDate());
-        popularity.setText("Popularidad: "+item.getPopularity() + " %");
-        descripcio.setText("Sinopsis: "+item.getOverview());
-        final String urlPoster = "http://image.tmdb.org/t/p/";
-        final String definicionPoster = "w780";
-        Picasso.with(getContext()).load(urlPoster+definicionPoster+item.getPosterPath()).into(poster);
+        Long movie_id = getActivity().getIntent().getLongExtra("movie_id", -1);
+        /*Cursor cursorPelis = getContext().getContentResolver().query(
+                PelisproviderColumns.CONTENT_URI,
+                null,
+                PelisproviderColumns._ID + " = ?",
+                new String[]{String.valueOf(movie_id)},
+                "_id"
+                );
+        PelisproviderCursor pelisCursor = new PelisproviderCursor(cursorPelis);
+        pelisCursor.moveToNext();
 
+        //titulo.setText("Titulo: " + item.getTitle());
+        titulo.setText("Titulo: " + pelisCursor.getTituloPeli());
+        //data.setText("Fecha de salida: "+item.getReleaseDate());
+        data.setText("Fecha de salida: " + pelisCursor.getFechaPeli());
+        //popularity.setText("Popularidad: "+item.getPopularity() + " %");
+        popularity.setText("Popularidad: "+pelisCursor.getPopuPeli() + " %");
+        //descripcio.setText("Sinopsis: "+item.getOverview());
+        descripcio.setText("Sinopsis: " + pelisCursor.getSinopsisPeli());
+        //final String urlPoster = "http://image.tmdb.org/t/p/";
+        //final String definicionPoster = "w780";
+        //Picasso.with(getContext()).load(urlPoster+definicionPoster+item.getPosterPath()).into(poster);
+        Picasso.with(getContext()).load(pelisCursor.getPosterPeli()).into(poster);*/
         return view;
     }
 }

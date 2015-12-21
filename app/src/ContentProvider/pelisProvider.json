@@ -4,7 +4,7 @@
     {
       "documentation": "Titulo de la pelicula",
       "name": "titulo_peli",
-      "type": "String",
+      "type": "String"
     },
     {
       "documentation": "Fecha de salida de la pelicula.",
