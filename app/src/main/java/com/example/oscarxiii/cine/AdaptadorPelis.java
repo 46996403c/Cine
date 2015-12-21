@@ -1,41 +1,47 @@
 package com.example.oscarxiii.cine;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
-import com.example.oscarxiii.cine.json.Result;
+import com.example.oscarxiii.cine.provider.pelisprovider.PelisproviderCursor;
 import com.squareup.picasso.Picasso;
-
-import java.util.List;
 
 
 /**
  * Created by Usuario on 09/11/2015.
  */
-public class AdaptadorPelis extends ArrayAdapter<Result>{
-    public AdaptadorPelis(Context contexto, int recurso, List<Result> objectos) {
-        super(contexto, recurso, objectos);
+public class AdaptadorPelis extends SimpleCursorAdapter {
+    private final Context contexto;
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    public AdaptadorPelis(Context contexto, int recurso, Cursor c, String[] from, int[] to, int flags) {
+        super(contexto, recurso, c, from, to, flags);
+        this.contexto = contexto;
     }
 
     @Override
     public View getView(int posicion, View verPeli, ViewGroup verGrupo) {
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(contexto);
 
         // Obtenemos el objecto en la posicion correspondiente
-        Result pelicula = getItem(posicion);
+        Cursor cursor = getCursor();
+        PelisproviderCursor pelisCursor = new PelisproviderCursor(cursor);
+        pelisCursor.moveToPosition(posicion);
 
         if(pref.getString("ver_poster_lista_peliculas", "0").equals("0") || pref.getString("ver_poster_lista_peliculas", "0").equals("1")){
             // Comprovamos si la View se esta reusando, si no es asi "inflamos" la View
             // https://github.com/codepath/android_guides/wiki/Using-an-ArrayAdapter-with-ListView#row-view-recycling
             if (verPeli == null) {
-                LayoutInflater inflador = LayoutInflater.from(getContext());
+                LayoutInflater inflador = LayoutInflater.from(contexto);
                 verPeli = inflador.inflate(R.layout.lista_peliculas, verGrupo, false);
             }
 
@@ -47,13 +53,11 @@ public class AdaptadorPelis extends ArrayAdapter<Result>{
 
 
             //Ponemos los datos de los objectos (provienen del JSON) en el layout
-            tituloTV.setText(pelicula.getTitle());
-            popuTV.setText("Score: " + pelicula.getPopularity() + "%");
-            estrenoTV.setText(pelicula.getReleaseDate());
+            tituloTV.setText(pelisCursor.getTituloPeli());
+            popuTV.setText("Score: " + pelisCursor.getPopuPeli() + "%");
+            estrenoTV.setText(pelisCursor.getFechaPeli());
             if (pref.getString("ver_poster_lista_peliculas", "0").equals("0")){
-                final String urlPoster = "http://image.tmdb.org/t/p/";
-                final String definicionPoster = "w780";
-                Picasso.with(getContext()).load(urlPoster+definicionPoster+pelicula.getPosterPath()).into(posterIV);
+                Picasso.with(contexto).load(pelisCursor.getPosterPeli()).into(posterIV);
             }
 
             // Devolvemos la View con los datos para mostrarla
@@ -64,7 +68,7 @@ public class AdaptadorPelis extends ArrayAdapter<Result>{
             // Comprovamos si la View se esta reusando, si no es asi "inflamos" la View
             // https://github.com/codepath/android_guides/wiki/Using-an-ArrayAdapter-with-ListView#row-view-recycling
             if (verPeli == null) {
-                LayoutInflater inflador = LayoutInflater.from(getContext());
+                LayoutInflater inflador = LayoutInflater.from(contexto);
                 verPeli = inflador.inflate(R.layout.grid_peliculas, verGrupo, false);
             }
 
@@ -72,19 +76,11 @@ public class AdaptadorPelis extends ArrayAdapter<Result>{
             ImageView posterIV = (ImageView) verPeli.findViewById(R.id.ivPoster);
 
             //Ponemos los datos de los objectos (provienen del JSON) en el layout
-            final String urlPoster = "http://image.tmdb.org/t/p/";
-            final String definicionPoster = "w185";
-            Picasso.with(getContext()).load(urlPoster + definicionPoster + pelicula.getPosterPath()).resize(480,500).into(posterIV);
+            Picasso.with(contexto).load(pelisCursor.getPosterPeli()).resize(480, 500).into(posterIV);
 
             // Devolvemos la View con los datos para mostrarla
             return verPeli;
         }
-
         return null;
-
-
-
-
-
     }
 }

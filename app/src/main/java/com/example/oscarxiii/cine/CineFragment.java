@@ -19,7 +19,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 
 import com.example.oscarxiii.cine.json.Result;
 import com.example.oscarxiii.cine.provider.pelisprovider.PelisproviderColumns;
@@ -28,8 +27,7 @@ import java.util.ArrayList;
 
 public class CineFragment extends Fragment implements android.support.v4.app.LoaderManager.LoaderCallbacks<Cursor>{
     private ArrayList<Result> items;
-    //private AdaptadorPelis adaptador;
-    private SimpleCursorAdapter adaptador;
+    private AdaptadorPelis adaptador;
     private SwipeRefreshLayout msgRefreshCF;
 
     public CineFragment() {
@@ -57,8 +55,7 @@ public class CineFragment extends Fragment implements android.support.v4.app.Loa
             ListView listaPeli = (ListView) rootView.findViewById(R.id.listaPelis);
 
             items = new ArrayList<>();
-            //adaptador = new AdaptadorPelis(getContext(),R.layout.lista_peliculas,items);
-            adaptador = new SimpleCursorAdapter(
+            adaptador = new AdaptadorPelis(
                     getContext(),
                     R.layout.lista_peliculas,
                     null,
@@ -101,8 +98,7 @@ public class CineFragment extends Fragment implements android.support.v4.app.Loa
             GridView listaPeli = (GridView) rootView.findViewById(R.id.gridPelis);
 
             items = new ArrayList<>();
-            //adaptador = new AdaptadorPelis(getContext(),R.layout.grid_peliculas,items);
-            adaptador = new SimpleCursorAdapter(
+            adaptador = new AdaptadorPelis(
                     getContext(),
                     R.layout.lista_peliculas,
                     null,
@@ -170,11 +166,13 @@ public class CineFragment extends Fragment implements android.support.v4.app.Loa
         msgRefreshCF.setRefreshing(false);
 
     }
+    /*
     @Override
     public void onStart() {
         super.onStart();
         refresh();
     }
+    */
 
     @Override
     public android.support.v4.content.Loader<Cursor> onCreateLoader(int id, Bundle args) {
