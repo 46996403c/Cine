@@ -20,13 +20,10 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
 
-import com.example.oscarxiii.cine.json.Result;
 import com.example.oscarxiii.cine.provider.pelisprovider.PelisproviderColumns;
 
-import java.util.ArrayList;
-
 public class CineFragment extends Fragment implements android.support.v4.app.LoaderManager.LoaderCallbacks<Cursor>{
-    private ArrayList<Result> items;
+    //private ArrayList<Result> items;
     private AdaptadorPelis adaptador;
     private SwipeRefreshLayout msgRefreshCF;
 
@@ -54,7 +51,7 @@ public class CineFragment extends Fragment implements android.support.v4.app.Loa
             View rootView = inflater.inflate(R.layout.fragment_cine, container,false);
             ListView listaPeli = (ListView) rootView.findViewById(R.id.listaPelis);
 
-            items = new ArrayList<>();
+            //items = new ArrayList<>();
             adaptador = new AdaptadorPelis(
                     getContext(),
                     R.layout.lista_peliculas,
@@ -97,7 +94,7 @@ public class CineFragment extends Fragment implements android.support.v4.app.Loa
             View rootView = inflater.inflate(R.layout.fragment_cine, container,false);
             GridView listaPeli = (GridView) rootView.findViewById(R.id.gridPelis);
 
-            items = new ArrayList<>();
+            //items = new ArrayList<>();
             adaptador = new AdaptadorPelis(
                     getContext(),
                     R.layout.lista_peliculas,

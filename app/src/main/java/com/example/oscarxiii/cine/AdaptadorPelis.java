@@ -10,10 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import com.example.oscarxiii.cine.provider.pelisprovider.PelisproviderCursor;
+import com.github.florent37.picassopalette.PicassoPalette;
 import com.squareup.picasso.Picasso;
 
 
@@ -50,14 +52,21 @@ public class AdaptadorPelis extends SimpleCursorAdapter {
             TextView popuTV = (TextView) verPeli.findViewById(R.id.tvPelisPopus);
             TextView estrenoTV = (TextView) verPeli.findViewById(R.id.tvEstrenosPelis);
             ImageView posterIV = (ImageView) verPeli.findViewById(R.id.ivPoster);
-
+            LinearLayout linarLayoutDetalles = (LinearLayout) verPeli.findViewById(R.id.detallesPelisLinearLayout);
 
             //Ponemos los datos de los objectos (provienen del JSON) en el layout
             tituloTV.setText(pelisCursor.getTituloPeli());
             popuTV.setText("Score: " + pelisCursor.getPopuPeli() + "%");
             estrenoTV.setText(pelisCursor.getFechaPeli());
             if (pref.getString("ver_poster_lista_peliculas", "0").equals("0")){
-                Picasso.with(contexto).load(pelisCursor.getPosterPeli()).into(posterIV);
+                //Picasso.with(contexto).load(pelisCursor.getPosterPeli()).into(posterIV);
+                Picasso.with(contexto).load(pelisCursor.getPosterPeli()).fit().into(posterIV,
+                        PicassoPalette.with(pelisCursor.getPosterPeli(), posterIV)
+                                .use(PicassoPalette.Profile.MUTED_LIGHT)
+                                .intoBackground(linarLayoutDetalles)
+                                .intoTextColor(tituloTV)
+                                .intoTextColor(estrenoTV)
+                );
             }
 
             // Devolvemos la View con los datos para mostrarla
@@ -74,9 +83,14 @@ public class AdaptadorPelis extends SimpleCursorAdapter {
 
             // Unimos el codigo en las Views del Layout
             ImageView posterIV = (ImageView) verPeli.findViewById(R.id.ivPoster);
+            LinearLayout linarLayoutDetalles = (LinearLayout) verPeli.findViewById(R.id.detallesPelisLinearLayout);
 
             //Ponemos los datos de los objectos (provienen del JSON) en el layout
-            Picasso.with(contexto).load(pelisCursor.getPosterPeli()).resize(480, 500).into(posterIV);
+            Picasso.with(contexto).load(pelisCursor.getPosterPeli()).resize(480, 500).into(posterIV,
+                    PicassoPalette.with(pelisCursor.getPosterPeli(), posterIV)
+                            .use(PicassoPalette.Profile.MUTED_LIGHT)
+                            .intoBackground(linarLayoutDetalles)
+            );
 
             // Devolvemos la View con los datos para mostrarla
             return verPeli;
