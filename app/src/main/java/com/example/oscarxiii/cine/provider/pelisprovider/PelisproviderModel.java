@@ -48,9 +48,17 @@ public interface PelisproviderModel extends BaseModel {
 
     /**
      * Sincronizacion
-     * Get the {@code synctime} value.
+     * Get the {@code sincro_time} value.
      * Can be {@code null}.
      */
     @Nullable
     Date getSincroTime();
+
+    /**
+    * Actualizacion BBDD en pelisList
+    * Get the {@code list_peli} value.
+    * Can be {@code null}.
+    */
+    @Nullable
+    String getListPeli();
 }

@@ -7,7 +7,7 @@
   "sqliteOpenHelperClassName": "ExampleSQLiteOpenHelper",
   "sqliteOpenHelperCallbacksClassName": "ExampleSQLiteOpenHelperCallbacks",
   "databaseFileName": "pelisXIII.db",
-  "databaseVersion": 1,
+  "databaseVersion": 2,
   "enableForeignKeys": true,
   "useAnnotations": true
 }

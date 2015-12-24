@@ -77,12 +77,22 @@ public class PelisproviderCursor extends AbstractCursor implements Pelisprovider
 
     /**
      * Sincronizacion
-     * Get the {@code synctime} value.
+     * Get the {@code sincro_time} value.
      * Can be {@code null}.
      */
     @Nullable
     public Date getSincroTime() {
         Date res = getDateOrNull(PelisproviderColumns.SINCRO_TIME);
+        return res;
+    }
+
+    /**
+     * Get the {@code list_peli} value.
+     * Can be {@code null}.
+     */
+    @Nullable
+    public String getListPeli() {
+        String res = getStringOrNull(PelisproviderColumns.LIST_PELI);
         return res;
     }
 }

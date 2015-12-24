@@ -22,7 +22,7 @@ public class PelisproviderSelection extends AbstractSelection<PelisproviderSelec
      * Query the given content resolver using this selection.
      *
      * @param contentResolver The content resolver to query.
-     * @param projection A list of which columns to return. Passing null will return all columns, which is inefficient.
+     * @param projection      A list of which columns to return. Passing null will return all columns, which is inefficient.
      * @return A {@code PelisproviderCursor} object, which is positioned before the first entry, or null.
      */
     public PelisproviderCursor query(ContentResolver contentResolver, String[] projection) {
@@ -41,7 +41,7 @@ public class PelisproviderSelection extends AbstractSelection<PelisproviderSelec
     /**
      * Query the given content resolver using this selection.
      *
-     * @param context The context to use for the query.
+     * @param context    The context to use for the query.
      * @param projection A list of which columns to return. Passing null will return all columns, which is inefficient.
      * @return A {@code PelisproviderCursor} object, which is positioned before the first entry, or null.
      */
@@ -158,37 +158,37 @@ public class PelisproviderSelection extends AbstractSelection<PelisproviderSelec
         return this;
     }
 
-    public PelisproviderSelection popuPli(Double... value) {
+    public PelisproviderSelection popuPeli(Double... value) {
         addEquals(PelisproviderColumns.POPU_PELI, value);
         return this;
     }
 
-    public PelisproviderSelection popuPliNot(Double... value) {
+    public PelisproviderSelection popuPeliNot(Double... value) {
         addNotEquals(PelisproviderColumns.POPU_PELI, value);
         return this;
     }
 
-    public PelisproviderSelection popuPliGt(double value) {
+    public PelisproviderSelection popuPeliGt(double value) {
         addGreaterThan(PelisproviderColumns.POPU_PELI, value);
         return this;
     }
 
-    public PelisproviderSelection popuPliGtEq(double value) {
+    public PelisproviderSelection popuPeliGtEq(double value) {
         addGreaterThanOrEquals(PelisproviderColumns.POPU_PELI, value);
         return this;
     }
 
-    public PelisproviderSelection popuPliLt(double value) {
+    public PelisproviderSelection popuPeliLt(double value) {
         addLessThan(PelisproviderColumns.POPU_PELI, value);
         return this;
     }
 
-    public PelisproviderSelection popuPliLtEq(double value) {
+    public PelisproviderSelection popuPeliLtEq(double value) {
         addLessThanOrEquals(PelisproviderColumns.POPU_PELI, value);
         return this;
     }
 
-    public PelisproviderSelection orderByPopuPli(boolean desc) {
+    public PelisproviderSelection orderByPopuPeli(boolean desc) {
         orderBy(PelisproviderColumns.POPU_PELI, desc);
         return this;
     }
@@ -278,8 +278,6 @@ public class PelisproviderSelection extends AbstractSelection<PelisproviderSelec
         return this;
     }
 
-
-
     public PelisproviderSelection synctime(Date... value) {
         addEquals(PelisproviderColumns.SINCRO_TIME, value);
         return this;
@@ -322,6 +320,46 @@ public class PelisproviderSelection extends AbstractSelection<PelisproviderSelec
 
     public PelisproviderSelection orderBySynctime() {
         orderBy(PelisproviderColumns.SINCRO_TIME, false);
+        return this;
+    }
+
+    public PelisproviderSelection movielist(String... value) {
+        addEquals(PelisproviderColumns.LIST_PELI, value);
+        return this;
+    }
+
+    public PelisproviderSelection movielistNot(String... value) {
+        addNotEquals(PelisproviderColumns.LIST_PELI, value);
+        return this;
+    }
+
+    public PelisproviderSelection movielistLike(String... value) {
+        addLike(PelisproviderColumns.LIST_PELI, value);
+        return this;
+    }
+
+    public PelisproviderSelection movielistContains(String... value) {
+        addContains(PelisproviderColumns.LIST_PELI, value);
+        return this;
+    }
+
+    public PelisproviderSelection movielistStartsWith(String... value) {
+        addStartsWith(PelisproviderColumns.LIST_PELI, value);
+        return this;
+    }
+
+    public PelisproviderSelection movielistEndsWith(String... value) {
+        addEndsWith(PelisproviderColumns.LIST_PELI, value);
+        return this;
+    }
+
+    public PelisproviderSelection orderByMovielist(boolean desc) {
+        orderBy(PelisproviderColumns.LIST_PELI, desc);
+        return this;
+    }
+
+    public PelisproviderSelection orderByMovielist() {
+        orderBy(PelisproviderColumns.LIST_PELI, false);
         return this;
     }
 }

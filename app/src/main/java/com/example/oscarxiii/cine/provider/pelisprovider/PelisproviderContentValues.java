@@ -1,14 +1,15 @@
 package com.example.oscarxiii.cine.provider.pelisprovider;
 
-import java.util.Date;
-
-import android.content.Context;
 import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
 import android.net.Uri;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.example.oscarxiii.cine.provider.base.AbstractContentValues;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Content values wrapper for the {@code pelisprovider} table.
@@ -32,7 +33,7 @@ public class PelisproviderContentValues extends AbstractContentValues {
     /**
      * Update row(s) using the values stored by this object and the given selection.
      *
-     * @param contentResolver The content resolver to use.
+     * @param //contentResolver The content resolver to use.
      * @param where The selection to use (can be {@code null}).
      */
     public int update(Context context, @Nullable PelisproviderSelection where) {
@@ -119,6 +120,19 @@ public class PelisproviderContentValues extends AbstractContentValues {
 
     public PelisproviderContentValues putSincroTime(@Nullable Long value) {
         mContentValues.put(PelisproviderColumns.SINCRO_TIME, value);
+        return this;
+    }
+
+    /**
+     * Actualizacion BBDD en pelisList
+     * @param value
+     */
+    public PelisproviderContentValues putListPelis(@Nullable ArrayList<ContentValues> value) {
+        mContentValues.put(PelisproviderColumns.LIST_PELI, String.valueOf(value));
+        return this;
+    }
+    public PelisproviderContentValues putListPelisNull() {
+        mContentValues.putNull(PelisproviderColumns.LIST_PELI);
         return this;
     }
 }

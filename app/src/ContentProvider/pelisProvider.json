@@ -30,6 +30,11 @@
       "documentation": "Sincronizacion",
       "name": "sincro_time",
       "type": "Date"
+    },
+    {
+      "documentation": "Actualizacion BBDD en pelisList",
+      "name": "list_peli",
+      "type": "String"
     }
   ]
 }

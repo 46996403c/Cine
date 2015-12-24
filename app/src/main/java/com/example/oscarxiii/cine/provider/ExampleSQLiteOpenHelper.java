@@ -30,7 +30,8 @@ public class ExampleSQLiteOpenHelper extends SQLiteOpenHelper {
             + PelisproviderColumns.POPU_PELI + " REAL, "
             + PelisproviderColumns.SINOPSIS_PELI + " TEXT, "
             + PelisproviderColumns.POSTER_PELI + " TEXT, "
-            + PelisproviderColumns.SINCRO_TIME + " INTEGRER "
+            + PelisproviderColumns.SINCRO_TIME + " INTEGRER, "
+            + PelisproviderColumns.LIST_PELI + " TEXT "
             + " );";
 
     // @formatter:on

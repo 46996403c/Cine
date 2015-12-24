@@ -1,6 +1,6 @@
 package com.example.oscarxiii.cine;
 
-import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,7 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.oscarxiii.cine.json.Result;
+import com.example.oscarxiii.cine.provider.pelisprovider.PelisproviderColumns;
+import com.example.oscarxiii.cine.provider.pelisprovider.PelisproviderCursor;
+import com.squareup.picasso.Picasso;
 
 public class DetallesFragment extends Fragment {
     private TextView titulo;
@@ -25,8 +27,8 @@ public class DetallesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_detalles, container, false);
-        Intent i = getActivity().getIntent();
-        Result item = (Result) i.getSerializableExtra("item");
+        //Intent i = getActivity().getIntent();
+        //Result item = (Result) i.getSerializableExtra("item");
 
         titulo = (TextView) view.findViewById(R.id.tvTituloPelis);
         data = (TextView) view.findViewById(R.id.tvEstrenosPelis);
@@ -34,10 +36,8 @@ public class DetallesFragment extends Fragment {
         descripcio = (TextView) view.findViewById(R.id.tvDescripcion);
         poster = (ImageView) view.findViewById(R.id.ivPoster);
 
-        Toast.makeText(getContext(), item.getOriginalTitle(), Toast.LENGTH_LONG).show();
-
         Long movie_id = getActivity().getIntent().getLongExtra("movie_id", -1);
-        /*Cursor cursorPelis = getContext().getContentResolver().query(
+        Cursor cursorPelis = getContext().getContentResolver().query(
                 PelisproviderColumns.CONTENT_URI,
                 null,
                 PelisproviderColumns._ID + " = ?",
@@ -46,6 +46,9 @@ public class DetallesFragment extends Fragment {
                 );
         PelisproviderCursor pelisCursor = new PelisproviderCursor(cursorPelis);
         pelisCursor.moveToNext();
+
+        //Toast.makeText(getContext(), item.getOriginalTitle(), Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), pelisCursor.getTituloPeli(), Toast.LENGTH_LONG).show();
 
         //titulo.setText("Titulo: " + item.getTitle());
         titulo.setText("Titulo: " + pelisCursor.getTituloPeli());
@@ -58,7 +61,7 @@ public class DetallesFragment extends Fragment {
         //final String urlPoster = "http://image.tmdb.org/t/p/";
         //final String definicionPoster = "w780";
         //Picasso.with(getContext()).load(urlPoster+definicionPoster+item.getPosterPath()).into(poster);
-        Picasso.with(getContext()).load(pelisCursor.getPosterPeli()).into(poster);*/
+        Picasso.with(getContext()).load(pelisCursor.getPosterPeli()).into(poster);
         return view;
     }
 }

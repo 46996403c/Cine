@@ -30,7 +30,7 @@ public class PelisproviderColumns implements BaseColumns {
     /**
      * Popularidad de la pelicula
      */
-    public static final String POPU_PELI = "popu_pli";
+    public static final String POPU_PELI = "popu_peli";
 
     /**
      * Sinopsis de la pelicula
@@ -47,6 +47,11 @@ public class PelisproviderColumns implements BaseColumns {
      */
     public static final String SINCRO_TIME = "sincro_time";
 
+    /**
+     * Actualizacion BBDD en pelisList
+     */
+    public static final String LIST_PELI = "list_peli";
+
 
     public static final String DEFAULT_ORDER = TABLE_NAME + "" +_ID;
 
@@ -58,7 +63,8 @@ public class PelisproviderColumns implements BaseColumns {
             POPU_PELI,
             SINOPSIS_PELI,
             POSTER_PELI,
-            SINCRO_TIME
+            SINCRO_TIME,
+            LIST_PELI
     };
     // @formatter:on
 
@@ -71,6 +77,7 @@ public class PelisproviderColumns implements BaseColumns {
             if (c.equals(SINOPSIS_PELI) || c.contains("." + SINOPSIS_PELI)) return true;
             if (c.equals(POSTER_PELI) || c.contains("." + POSTER_PELI)) return true;
             if (c.equals(SINCRO_TIME) || c.contains("." + SINCRO_TIME)) return true;
+            if (c.equals(LIST_PELI) || c.contains("." + LIST_PELI)) return true;
         }
         return false;
     }

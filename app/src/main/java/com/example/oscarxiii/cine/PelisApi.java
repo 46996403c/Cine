@@ -66,9 +66,11 @@ public class PelisApi {
                         valores.putSinopsisPeli(peli.getOverview());
                         valores.putPosterPeli(peli.getPosterPath());
                         valores.putSincroTime(sincoTime);
+                        valores.putListPelis(listaValores);
                         //Insertamos la pelicula
                         contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
                         Picasso.with(contexto).load(peli.getPosterPath()).fetch();
+                        listaValores.add(valores.values());
                     }
                     //Insertamos todas las peliculas
                     //contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
@@ -114,9 +116,11 @@ public class PelisApi {
                         valores.putSinopsisPeli(peli.getOverview());
                         valores.putPosterPeli(peli.getPosterPath());
                         valores.putSincroTime(sincoTime);
+                        valores.putListPelis(listaValores);
                         //Insertamos la pelicula
                         contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
                         Picasso.with(contexto).load(peli.getPosterPath()).fetch();
+                        listaValores.add(valores.values());
                     }
                     //Insertamos todas las peliculas
                     //contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
@@ -161,9 +165,11 @@ public class PelisApi {
                         valores.putSinopsisPeli(peli.getOverview());
                         valores.putPosterPeli(peli.getPosterPath());
                         valores.putSincroTime(sincoTime);
+                        valores.putListPelis(listaValores);
                         //Insertamos la pelicula
                         contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
                         Picasso.with(contexto).load(peli.getPosterPath()).fetch();
+                        listaValores.add(valores.values());
                     }
                     //Insertamos todas las peliculas
                     //contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
@@ -203,9 +209,11 @@ public class PelisApi {
                         valores.putSinopsisPeli(peli.getOverview());
                         valores.putPosterPeli(peli.getPosterPath());
                         valores.putSincroTime(sincoTime);
+                        valores.putListPelis(listaValores);
                         //Insertamos la pelicula
                         contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
                         Picasso.with(contexto).load(peli.getPosterPath()).fetch();
+                        listaValores.add(valores.values());
                     }
                     //Insertamos todas las peliculas
                     //contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
