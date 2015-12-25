@@ -21,6 +21,8 @@ import android.widget.GridView;
 import android.widget.ListView;
 
 import com.example.oscarxiii.cine.provider.pelisprovider.PelisproviderColumns;
+import com.google.android.gms.gcm.GcmNetworkManager;
+import com.google.android.gms.gcm.OneoffTask;
 
 public class CineFragment extends Fragment implements android.support.v4.app.LoaderManager.LoaderCallbacks<Cursor>{
     //private ArrayList<Result> items;
@@ -148,7 +150,17 @@ public class CineFragment extends Fragment implements android.support.v4.app.Loa
     }
 
     private void refresh() {
-        msgRefreshCF.setRefreshing(true);
+        OneoffTask tarea = new OneoffTask.Builder()
+                .setExecutionWindow(0, 1)
+                .setPersisted(true)
+                .setRequiredNetwork(OneoffTask.NETWORK_STATE_CONNECTED)
+                .setRequiresCharging(false)
+                .setService(ServicioActualizadorPelis.class)
+                .setTag("update_movies_now")
+                .build();
+        GcmNetworkManager.getInstance(getContext()).schedule(tarea);
+
+        /*msgRefreshCF.setRefreshing(true);
         PelisApi apiPelis = new PelisApi(getContext());
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getContext());
         if (pref.getString("lista_categorias", "0").equals("1") && pref.getString("lista_idiomas", "0").equals("1")){
@@ -160,7 +172,7 @@ public class CineFragment extends Fragment implements android.support.v4.app.Loa
         }else if (pref.getString("lista_categorias", "0").equals("0") && pref.getString("lista_idiomas", "0").equals("0")){
             apiPelis.getMillorsPeliculesIngles(adaptador);
         }
-        msgRefreshCF.setRefreshing(false);
+        msgRefreshCF.setRefreshing(false);*/
 
     }
 
