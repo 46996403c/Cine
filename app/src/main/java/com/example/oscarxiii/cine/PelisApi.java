@@ -3,7 +3,7 @@ package com.example.oscarxiii.cine;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.widget.SimpleCursorAdapter;
+import android.os.AsyncTask;
 
 import com.example.oscarxiii.cine.json.PelisPiojo;
 import com.example.oscarxiii.cine.json.Result;
@@ -30,6 +30,7 @@ public class PelisApi {
             .build();
     cineInterface servicio = retrofit.create(cineInterface.class);
     private final Context contexto;
+    UpdatePelisTarea updatePelis = new UpdatePelisTarea();
 
     public PelisApi(Context context) {
         super();
@@ -38,10 +39,11 @@ public class PelisApi {
 
     /**
      * Metodo donde se muestran las peliculas mas vistas, se hace una llamada desde la interfaz
-     * @param adaptador
+     * @param //adaptador
      */
     //public void getPeliculesMesVistes(final ArrayAdapter<Result> adaptador) {
-    public void getPeliculesMesVistes(SimpleCursorAdapter adaptador) {
+    //public void getPeliculesMesVistes(SimpleCursorAdapter adaptador) {
+    public void getPeliculesMesVistes() {
         Call<PelisPiojo> llamada = servicio.getPeliculesMesVistes();
         llamada.enqueue(new Callback<PelisPiojo>() {
             @Override
@@ -74,10 +76,7 @@ public class PelisApi {
                     }
                     //Insertamos todas las peliculas
                     //contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
-                    contexto.getContentResolver().delete(
-                            PelisproviderColumns.CONTENT_URI,
-                            PelisproviderColumns.SINCRO_TIME+ " < ?",
-                            new String[]{Long.toString(sincoTime)});
+                    updatePelis.execute();
                 } else {
                     System.out.println("RESULTADO FAIL: " + respuesta.errorBody().toString());
                 }
@@ -91,7 +90,8 @@ public class PelisApi {
     }
 
     //public void getPeliculesMesVistesIngles(final ArrayAdapter<Result> adaptador) {
-    public void getPeliculesMesVistesIngles(SimpleCursorAdapter adaptador) {
+    //public void getPeliculesMesVistesIngles(SimpleCursorAdapter adaptador) {
+    public void getPeliculesMesVistesIngles() {
         Call<PelisPiojo> llamada = servicio.getPeliculesMesVistesIngles();
         llamada.enqueue(new Callback<PelisPiojo>() {
             @Override
@@ -124,10 +124,7 @@ public class PelisApi {
                     }
                     //Insertamos todas las peliculas
                     //contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
-                    contexto.getContentResolver().delete(
-                            PelisproviderColumns.CONTENT_URI,
-                            PelisproviderColumns.SINCRO_TIME+ " < ?",
-                            new String[]{Long.toString(sincoTime)});
+                    updatePelis.execute();
                 } else {
                     System.out.println("RESULTADO FAIL: " + respuesta.errorBody().toString());
                 }
@@ -142,10 +139,11 @@ public class PelisApi {
 
     /**
      * Metodo donde se muestran las peliculas mejor valoradas, se hace una llamada desde la interfaz
-     * @param adaptador
+     * @param //adaptador
      */
     //public void getMillorsPelicules(final ArrayAdapter<Result> adaptador) {
-    public void getMillorsPelicules(SimpleCursorAdapter adaptador) {
+    //public void getMillorsPelicules(SimpleCursorAdapter adaptador) {
+    public void getMillorsPelicules() {
         Call<PelisPiojo> llamada = servicio.getMillorsPelicules();
         llamada.enqueue(new Callback<PelisPiojo>() {
             @Override
@@ -173,10 +171,7 @@ public class PelisApi {
                     }
                     //Insertamos todas las peliculas
                     //contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
-                    contexto.getContentResolver().delete(
-                            PelisproviderColumns.CONTENT_URI,
-                            PelisproviderColumns.SINCRO_TIME+ " < ?",
-                            new String[]{Long.toString(sincoTime)});
+                    updatePelis.execute();
                 }else{
                     System.out.println("RESULTADO FAIL: "+ respuesta.errorBody().toString());
                 }
@@ -189,7 +184,8 @@ public class PelisApi {
     }
 
     //public void getMillorsPeliculesIngles(final ArrayAdapter<Result> adaptador) {
-    public void getMillorsPeliculesIngles(SimpleCursorAdapter adaptador) {
+    //public void getMillorsPeliculesIngles(SimpleCursorAdapter adaptador){
+    public void getMillorsPeliculesIngles(){
         Call<PelisPiojo> llamada = servicio.getMillorsPeliculesIngles();
         llamada.enqueue(new Callback<PelisPiojo>() {
             @Override
@@ -200,7 +196,7 @@ public class PelisApi {
                     long sincoTime = System.currentTimeMillis();
                     //adaptador.clear();
                     ArrayList<ContentValues> listaValores = new ArrayList<>();
-                    for (Result peli : apiData.getResults()){
+                    for (Result peli : apiData.getResults()) {
                         //adaptador.add(peli);
                         PelisproviderContentValues valores = new PelisproviderContentValues();
                         valores.putTituloPeli(peli.getTitle());
@@ -217,39 +213,59 @@ public class PelisApi {
                     }
                     //Insertamos todas las peliculas
                     //contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
-                    contexto.getContentResolver().delete(
-                            PelisproviderColumns.CONTENT_URI,
-                            PelisproviderColumns.SINCRO_TIME+ " < ?",
-                            new String[]{Long.toString(sincoTime)});
-                }
-                else{
-                    System.out.println("RESULTADO FAIL: "+ respuesta.errorBody().toString());
+                    updatePelis.execute();
+                } else {
+                    System.out.println("RESULTADO FAIL: " + respuesta.errorBody().toString());
                 }
             }
+
             @Override
             public void onFailure(Throwable t) {
                 System.out.println("RESULTADO FAIL --> onFailure");
             }
         });
     }
+    private void borrarPelisViejas(long sincroTime) {
+        contexto.getContentResolver().delete(
+                PelisproviderColumns.CONTENT_URI,
+                PelisproviderColumns.SINCRO_TIME + " < ?",
+                new String[]{Long.toString(sincroTime)});
+        }
+
+    /**
+     * Interfaces donde se hace la llamada a los metodos segun la opcion que este seleccionada.
+     */
+    interface cineInterface {
+        //url donde se pasa la api y los requisitos de visrualizacion
+        @GET("discover/movie?sort_by=popularity.desc&api_key=c82d8a6c928270dc97f66357f99880a5&language=es&include_image_language=es")
+        Call<PelisPiojo> getPeliculesMesVistes();
+
+        @GET("discover/movie?sort_by=popularity.desc&api_key=c82d8a6c928270dc97f66357f99880a5&language=en&include_image_language=en")
+        Call<PelisPiojo> getPeliculesMesVistesIngles();
+
+        //url donde se pasa la api y los requisitos de visrualizacion
+        @GET("movie/top_rated?api_key=c82d8a6c928270dc97f66357f99880a5&language=es&include_image_language=es")
+        Call<PelisPiojo> getMillorsPelicules();
+
+        @GET("movie/top_rated?api_key=c82d8a6c928270dc97f66357f99880a5&language=en&include_image_language=en")
+        Call<PelisPiojo> getMillorsPeliculesIngles();
+
+    }
+
+    class UpdatePelisTarea extends AsyncTask {
+        @Override
+        protected Object doInBackground(Object[] params) {
+            long sincroTime = System.currentTimeMillis();
+            getPeliculesMesVistes();
+            getPeliculesMesVistesIngles();
+            getMillorsPelicules();
+            getMillorsPeliculesIngles();
+            borrarPelisViejas(sincroTime);
+            return null;
+        }
+    }
+
 }
 
-/**
- * Interfaces donde se hace la llamada a los metodos segun la opcion que este seleccionada.
- */
-interface cineInterface {
-    //url donde se pasa la api y los requisitos de visrualizacion
-    @GET("discover/movie?sort_by=popularity.desc&api_key=c82d8a6c928270dc97f66357f99880a5&language=es&include_image_language=es")
-    Call<PelisPiojo> getPeliculesMesVistes();
 
-    @GET("discover/movie?sort_by=popularity.desc&api_key=c82d8a6c928270dc97f66357f99880a5&language=en&include_image_language=en")
-    Call<PelisPiojo> getPeliculesMesVistesIngles();
 
-    //url donde se pasa la api y los requisitos de visrualizacion
-    @GET("movie/top_rated?api_key=c82d8a6c928270dc97f66357f99880a5&language=es&include_image_language=es")
-    Call<PelisPiojo> getMillorsPelicules();
-
-    @GET("movie/top_rated?api_key=c82d8a6c928270dc97f66357f99880a5&language=en&include_image_language=en")
-    Call<PelisPiojo> getMillorsPeliculesIngles();
-
-}
