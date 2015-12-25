@@ -25,7 +25,7 @@ public class ServicioActualizadorPelis extends GcmTaskService {
     }
     @Override
     public int onRunTask(TaskParams taskParams) {
-        PelisApi apiClient = new PelisApi(this);
+        PelisApi apiClient = new PelisApi(this, handler);
         apiClient.getMillorsPelicules(adaptador);
         apiClient.getMillorsPeliculesIngles(adaptador);
         apiClient.getPeliculesMesVistes(adaptador);

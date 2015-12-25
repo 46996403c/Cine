@@ -3,7 +3,9 @@ package com.example.oscarxiii.cine;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.os.Handler;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 import com.example.oscarxiii.cine.json.PelisPiojo;
 import com.example.oscarxiii.cine.json.Result;
@@ -25,17 +27,26 @@ public class PelisApi {
     //https://api.themoviedb.org/3/movie/550?api_key=c82d8a6c928270dc97f66357f99880a5
     final String BASE_URL = "https://api.themoviedb.org/3/"; //Base de url donde se pasa la informacion de la api
     final String API_KEY = "c82d8a6c928270dc97f66357f99880a5";
-    Retrofit retrofit = new Retrofit.Builder()
+/*    Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
-    cineInterface servicio = retrofit.create(cineInterface.class);
+    cineInterface servicio = retrofit.create(cineInterface.class);*/
+    Retrofit retrofit;
+    cineInterface servicio;
     private final Context contexto;
     //UpdatePelisTarea updatePelis = new UpdatePelisTarea();
+    private final Handler handler;
 
     public PelisApi(Context context) {
         super();
         this.contexto = context;
+        handler = new Handler(context.getMainLooper());
+        retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        servicio = retrofit.create(cineInterface.class);
     }
 
     /**
@@ -50,6 +61,7 @@ public class PelisApi {
             @Override
             public void onResponse(Response<PelisPiojo> respuesta, Retrofit retrofit) {
                 if (respuesta.isSuccess()) {
+                    toast("Empezando sincronització");
                     PelisPiojo apiData = respuesta.body();
                     // System.out.println("RESULTADO OK" + apiData.getMovies().toString());
                     //adaptador.clear();
@@ -84,7 +96,9 @@ public class PelisApi {
                     bulkParaInsertar = new ContentValues[listaValoresCV.size()];
                     listaValoresCV.toArray(bulkParaInsertar);
                     contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, bulkParaInsertar);
+                    toast("Sincronitzacion terminada con exito.");
                 } else {
+                    toast("No se ha podido sincronizar");
                     System.out.println("RESULTADO FAIL: " + respuesta.errorBody().toString());
                 }
             }
@@ -104,6 +118,7 @@ public class PelisApi {
             @Override
             public void onResponse(Response<PelisPiojo> respuesta, Retrofit retrofit) {
                 if (respuesta.isSuccess()) {
+                    toast("Empezando sincronització");
                     PelisPiojo apiData = respuesta.body();
                     // System.out.println("RESULTADO OK" + apiData.getMovies().toString());
                     //adaptador.clear();
@@ -138,7 +153,9 @@ public class PelisApi {
                     bulkParaInsertar = new ContentValues[listaValoresCV.size()];
                     listaValoresCV.toArray(bulkParaInsertar);
                     contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, bulkParaInsertar);
+                    toast("Sincronitzacion terminada con exito.");
                 } else {
+                    toast("No se ha podido sincronizar");
                     System.out.println("RESULTADO FAIL: " + respuesta.errorBody().toString());
                 }
             }
@@ -162,6 +179,7 @@ public class PelisApi {
             @Override
             public void onResponse(Response<PelisPiojo> respuesta, Retrofit retrofit) {
                 if (respuesta.isSuccess()) {
+                    toast("Empezando sincronització");
                     PelisPiojo apiData = respuesta.body();
                     // System.out.println("RESULTADO OK" + apiData.getMovies().toString());
                     long sincoTime = System.currentTimeMillis();
@@ -191,7 +209,9 @@ public class PelisApi {
                     bulkParaInsertar = new ContentValues[listaValoresCV.size()];
                     listaValoresCV.toArray(bulkParaInsertar);
                     contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, bulkParaInsertar);
+                    toast("Sincronitzacion terminada con exito.");
                 }else{
+                    toast("No se ha podido sincronizar");
                     System.out.println("RESULTADO FAIL: "+ respuesta.errorBody().toString());
                 }
             }
@@ -203,13 +223,14 @@ public class PelisApi {
     }
 
     //public void getMillorsPeliculesIngles(final ArrayAdapter<Result> adaptador) {
-    //public void getMillorsPeliculesIngles(SimpleCursorAdapter adaptador){
     public void getMillorsPeliculesIngles(SimpleCursorAdapter adaptador){
+    //public void getMillorsPeliculesIngles(){
         Call<PelisPiojo> llamada = servicio.getMillorsPeliculesIngles();
         llamada.enqueue(new Callback<PelisPiojo>() {
             @Override
             public void onResponse(Response<PelisPiojo> respuesta, Retrofit retrofit) {
                 if (respuesta.isSuccess()) {
+                    toast("Empezando sincronització");
                     PelisPiojo apiData = respuesta.body();
                     // System.out.println("RESULTADO OK" + apiData.getMovies().toString());
                     long sincoTime = System.currentTimeMillis();
@@ -239,7 +260,9 @@ public class PelisApi {
                     bulkParaInsertar = new ContentValues[listaValoresCV.size()];
                     listaValoresCV.toArray(bulkParaInsertar);
                     contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, bulkParaInsertar);
+                    toast("Sincronitzacion terminada con exito.");
                 } else {
+                    toast("No se ha podido sincronizar");
                     System.out.println("RESULTADO FAIL: " + respuesta.errorBody().toString());
                 }
             }
@@ -255,7 +278,16 @@ public class PelisApi {
                 PelisproviderColumns.CONTENT_URI,
                 PelisproviderColumns.SINCRO_TIME + " < ?",
                 new String[]{Long.toString(sincroTime)});
-        }
+    }
+
+    private void toast(final String text) {
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(contexto, text, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
     /**
      * Interfaces donde se hace la llamada a los metodos segun la opcion que este seleccionada.
