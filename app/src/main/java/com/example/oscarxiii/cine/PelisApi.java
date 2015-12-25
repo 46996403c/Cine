@@ -12,6 +12,7 @@ import com.example.oscarxiii.cine.provider.pelisprovider.PelisproviderContentVal
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit.Call;
 import retrofit.Callback;
@@ -59,6 +60,8 @@ public class PelisApi {
                     }
                     */
                     ArrayList<ContentValues> listaValores = new ArrayList<>();
+                    ContentValues[] bulkParaInsertar;
+                    List<ContentValues> listaValoresCV = new ArrayList<>();
                     for (Result peli : apiData.getResults()) {
                         //adaptador.add(peli);
                         PelisproviderContentValues valores = new PelisproviderContentValues();
@@ -70,13 +73,17 @@ public class PelisApi {
                         valores.putSincroTime(sincoTime);
                         valores.putListPelis(listaValores);
                         //Insertamos la pelicula
-                        contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
+                        //contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
                         Picasso.with(contexto).load(peli.getPosterPath()).fetch();
                         listaValores.add(valores.values());
+                        listaValoresCV.add(valores.values());
                     }
                     //Insertamos todas las peliculas
                     //contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
                     updatePelis.execute();
+                    bulkParaInsertar = new ContentValues[listaValoresCV.size()];
+                    listaValoresCV.toArray(bulkParaInsertar);
+                    contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, bulkParaInsertar);
                 } else {
                     System.out.println("RESULTADO FAIL: " + respuesta.errorBody().toString());
                 }
@@ -107,6 +114,8 @@ public class PelisApi {
                     }
                     */
                     ArrayList<ContentValues> listaValores = new ArrayList<>();
+                    ContentValues[] bulkParaInsertar;
+                    List<ContentValues> listaValoresCV = new ArrayList<>();
                     for (Result peli : apiData.getResults()) {
                         //adaptador.add(peli);
                         PelisproviderContentValues valores = new PelisproviderContentValues();
@@ -118,13 +127,17 @@ public class PelisApi {
                         valores.putSincroTime(sincoTime);
                         valores.putListPelis(listaValores);
                         //Insertamos la pelicula
-                        contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
+                        //contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
                         Picasso.with(contexto).load(peli.getPosterPath()).fetch();
                         listaValores.add(valores.values());
+                        listaValoresCV.add(valores.values());
                     }
                     //Insertamos todas las peliculas
                     //contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
                     updatePelis.execute();
+                    bulkParaInsertar = new ContentValues[listaValoresCV.size()];
+                    listaValoresCV.toArray(bulkParaInsertar);
+                    contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, bulkParaInsertar);
                 } else {
                     System.out.println("RESULTADO FAIL: " + respuesta.errorBody().toString());
                 }
@@ -154,6 +167,8 @@ public class PelisApi {
                     long sincoTime = System.currentTimeMillis();
                     //adaptador.clear();
                     ArrayList<ContentValues> listaValores = new ArrayList<>();
+                    ContentValues[] bulkParaInsertar;
+                    List<ContentValues> listaValoresCV = new ArrayList<>();
                     for (Result peli : apiData.getResults()) {
                         //adaptador.add(peli);
                         PelisproviderContentValues valores = new PelisproviderContentValues();
@@ -165,13 +180,17 @@ public class PelisApi {
                         valores.putSincroTime(sincoTime);
                         valores.putListPelis(listaValores);
                         //Insertamos la pelicula
-                        contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
+                        //contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
                         Picasso.with(contexto).load(peli.getPosterPath()).fetch();
                         listaValores.add(valores.values());
+                        listaValoresCV.add(valores.values());
                     }
                     //Insertamos todas las peliculas
                     //contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
                     updatePelis.execute();
+                    bulkParaInsertar = new ContentValues[listaValoresCV.size()];
+                    listaValoresCV.toArray(bulkParaInsertar);
+                    contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, bulkParaInsertar);
                 }else{
                     System.out.println("RESULTADO FAIL: "+ respuesta.errorBody().toString());
                 }
@@ -196,6 +215,8 @@ public class PelisApi {
                     long sincoTime = System.currentTimeMillis();
                     //adaptador.clear();
                     ArrayList<ContentValues> listaValores = new ArrayList<>();
+                    ContentValues[] bulkParaInsertar;
+                    List<ContentValues> listaValoresCV = new ArrayList<>();
                     for (Result peli : apiData.getResults()) {
                         //adaptador.add(peli);
                         PelisproviderContentValues valores = new PelisproviderContentValues();
@@ -207,13 +228,17 @@ public class PelisApi {
                         valores.putSincroTime(sincoTime);
                         valores.putListPelis(listaValores);
                         //Insertamos la pelicula
-                        contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
+                        //contexto.getContentResolver().insert(PelisproviderColumns.CONTENT_URI, valores.values());
                         Picasso.with(contexto).load(peli.getPosterPath()).fetch();
                         listaValores.add(valores.values());
+                        listaValoresCV.add(valores.values());
                     }
                     //Insertamos todas las peliculas
                     //contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
                     updatePelis.execute();
+                    bulkParaInsertar = new ContentValues[listaValoresCV.size()];
+                    listaValoresCV.toArray(bulkParaInsertar);
+                    contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, bulkParaInsertar);
                 } else {
                     System.out.println("RESULTADO FAIL: " + respuesta.errorBody().toString());
                 }
