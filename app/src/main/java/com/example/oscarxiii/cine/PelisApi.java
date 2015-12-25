@@ -3,7 +3,6 @@ package com.example.oscarxiii.cine;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.os.AsyncTask;
 import android.widget.SimpleCursorAdapter;
 
 import com.example.oscarxiii.cine.json.PelisPiojo;
@@ -32,7 +31,7 @@ public class PelisApi {
             .build();
     cineInterface servicio = retrofit.create(cineInterface.class);
     private final Context contexto;
-    UpdatePelisTarea updatePelis = new UpdatePelisTarea();
+    //UpdatePelisTarea updatePelis = new UpdatePelisTarea();
 
     public PelisApi(Context context) {
         super();
@@ -81,7 +80,7 @@ public class PelisApi {
                     }
                     //Insertamos todas las peliculas
                     //contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
-                    updatePelis.execute();
+                    //updatePelis.execute();
                     bulkParaInsertar = new ContentValues[listaValoresCV.size()];
                     listaValoresCV.toArray(bulkParaInsertar);
                     contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, bulkParaInsertar);
@@ -135,7 +134,7 @@ public class PelisApi {
                     }
                     //Insertamos todas las peliculas
                     //contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
-                    updatePelis.execute();
+                    //updatePelis.execute();
                     bulkParaInsertar = new ContentValues[listaValoresCV.size()];
                     listaValoresCV.toArray(bulkParaInsertar);
                     contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, bulkParaInsertar);
@@ -188,7 +187,7 @@ public class PelisApi {
                     }
                     //Insertamos todas las peliculas
                     //contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
-                    updatePelis.execute();
+                    //updatePelis.execute();
                     bulkParaInsertar = new ContentValues[listaValoresCV.size()];
                     listaValoresCV.toArray(bulkParaInsertar);
                     contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, bulkParaInsertar);
@@ -236,7 +235,7 @@ public class PelisApi {
                     }
                     //Insertamos todas las peliculas
                     //contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, listaValores.toArray(new ContentValues[listaValores.size()]));
-                    updatePelis.execute();
+                    //updatePelis.execute();
                     bulkParaInsertar = new ContentValues[listaValoresCV.size()];
                     listaValoresCV.toArray(bulkParaInsertar);
                     contexto.getContentResolver().bulkInsert(PelisproviderColumns.CONTENT_URI, bulkParaInsertar);
@@ -278,7 +277,7 @@ public class PelisApi {
 
     }
 
-    class UpdatePelisTarea extends AsyncTask {
+   /* class UpdatePelisTarea extends AsyncTask {
         private AdaptadorPelis adaptador;
         @Override
         protected Object doInBackground(Object[] params) {
@@ -290,7 +289,7 @@ public class PelisApi {
             borrarPelisViejas(sincroTime);
             return null;
         }
-    }
+    }*/
 
 }
 
