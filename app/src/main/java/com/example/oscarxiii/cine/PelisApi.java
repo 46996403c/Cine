@@ -4,6 +4,7 @@ package com.example.oscarxiii.cine;
 import android.content.ContentValues;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.SimpleCursorAdapter;
 
 import com.example.oscarxiii.cine.json.PelisPiojo;
 import com.example.oscarxiii.cine.json.Result;
@@ -43,8 +44,8 @@ public class PelisApi {
      * @param //adaptador
      */
     //public void getPeliculesMesVistes(final ArrayAdapter<Result> adaptador) {
-    //public void getPeliculesMesVistes(SimpleCursorAdapter adaptador) {
-    public void getPeliculesMesVistes() {
+    public void getPeliculesMesVistes(SimpleCursorAdapter adaptador) {
+    //public void getPeliculesMesVistes() {
         Call<PelisPiojo> llamada = servicio.getPeliculesMesVistes();
         llamada.enqueue(new Callback<PelisPiojo>() {
             @Override
@@ -97,8 +98,8 @@ public class PelisApi {
     }
 
     //public void getPeliculesMesVistesIngles(final ArrayAdapter<Result> adaptador) {
-    //public void getPeliculesMesVistesIngles(SimpleCursorAdapter adaptador) {
-    public void getPeliculesMesVistesIngles() {
+    public void getPeliculesMesVistesIngles(SimpleCursorAdapter adaptador) {
+    //public void getPeliculesMesVistesIngles() {
         Call<PelisPiojo> llamada = servicio.getPeliculesMesVistesIngles();
         llamada.enqueue(new Callback<PelisPiojo>() {
             @Override
@@ -155,8 +156,8 @@ public class PelisApi {
      * @param //adaptador
      */
     //public void getMillorsPelicules(final ArrayAdapter<Result> adaptador) {
-    //public void getMillorsPelicules(SimpleCursorAdapter adaptador) {
-    public void getMillorsPelicules() {
+    public void getMillorsPelicules(SimpleCursorAdapter adaptador) {
+    //public void getMillorsPelicules() {
         Call<PelisPiojo> llamada = servicio.getMillorsPelicules();
         llamada.enqueue(new Callback<PelisPiojo>() {
             @Override
@@ -204,7 +205,7 @@ public class PelisApi {
 
     //public void getMillorsPeliculesIngles(final ArrayAdapter<Result> adaptador) {
     //public void getMillorsPeliculesIngles(SimpleCursorAdapter adaptador){
-    public void getMillorsPeliculesIngles(){
+    public void getMillorsPeliculesIngles(SimpleCursorAdapter adaptador){
         Call<PelisPiojo> llamada = servicio.getMillorsPeliculesIngles();
         llamada.enqueue(new Callback<PelisPiojo>() {
             @Override
@@ -278,13 +279,14 @@ public class PelisApi {
     }
 
     class UpdatePelisTarea extends AsyncTask {
+        private AdaptadorPelis adaptador;
         @Override
         protected Object doInBackground(Object[] params) {
             long sincroTime = System.currentTimeMillis();
-            getPeliculesMesVistes();
-            getPeliculesMesVistesIngles();
-            getMillorsPelicules();
-            getMillorsPeliculesIngles();
+            getPeliculesMesVistes(adaptador);
+            getPeliculesMesVistesIngles(adaptador);
+            getMillorsPelicules(adaptador);
+            getMillorsPeliculesIngles(adaptador);
             borrarPelisViejas(sincroTime);
             return null;
         }

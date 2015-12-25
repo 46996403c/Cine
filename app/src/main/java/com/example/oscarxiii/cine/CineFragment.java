@@ -163,13 +163,13 @@ public class CineFragment extends Fragment implements android.support.v4.app.Loa
         msgRefreshCF.setRefreshing(false);
 
     }
-    /*
+
     @Override
     public void onStart() {
         super.onStart();
-        refresh();
+        //refresh();
+        getLoaderManager().restartLoader(0, null, this);
     }
-    */
 
     @Override
     public android.support.v4.content.Loader<Cursor> onCreateLoader(int id, Bundle args) {
