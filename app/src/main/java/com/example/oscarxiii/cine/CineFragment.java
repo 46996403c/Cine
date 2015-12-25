@@ -21,8 +21,6 @@ import android.widget.GridView;
 import android.widget.ListView;
 
 import com.example.oscarxiii.cine.provider.pelisprovider.PelisproviderColumns;
-import com.google.android.gms.gcm.GcmNetworkManager;
-import com.google.android.gms.gcm.OneoffTask;
 
 public class CineFragment extends Fragment implements android.support.v4.app.LoaderManager.LoaderCallbacks<Cursor>{
     //private ArrayList<Result> items;
@@ -150,15 +148,7 @@ public class CineFragment extends Fragment implements android.support.v4.app.Loa
     }
 
     private void refresh() {
-        OneoffTask tarea = new OneoffTask.Builder()
-                .setExecutionWindow(0, 1)
-                .setPersisted(true)
-                .setRequiredNetwork(OneoffTask.NETWORK_STATE_CONNECTED)
-                .setRequiresCharging(false)
-                .setService(ServicioActualizadorPelis.class)
-                .setTag("update_movies_now")
-                .build();
-        GcmNetworkManager.getInstance(getContext()).schedule(tarea);
+        ServicioActualizadorPelis.runNow(getContext());
 
         /*msgRefreshCF.setRefreshing(true);
         PelisApi apiPelis = new PelisApi(getContext());
