@@ -88,6 +88,7 @@ public class CineFragment extends Fragment implements android.support.v4.app.Loa
                     refresh();
                 }
             });
+            ServicioActualizadorPelis.runDaily(getContext());
             return rootView;
 
         } else if(pref.getString("ver_poster_lista_peliculas", "0").equals("2")){
@@ -129,6 +130,7 @@ public class CineFragment extends Fragment implements android.support.v4.app.Loa
                     refresh();
                 }
             });
+            ServicioActualizadorPelis.runDaily(getContext());
             return rootView;
         }
         return null;

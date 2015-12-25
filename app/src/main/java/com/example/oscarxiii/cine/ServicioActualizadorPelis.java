@@ -5,6 +5,7 @@ import android.content.Context;
 import com.google.android.gms.gcm.GcmNetworkManager;
 import com.google.android.gms.gcm.GcmTaskService;
 import com.google.android.gms.gcm.OneoffTask;
+import com.google.android.gms.gcm.PeriodicTask;
 import com.google.android.gms.gcm.TaskParams;
 
 /**
@@ -19,13 +20,28 @@ public class ServicioActualizadorPelis extends GcmTaskService {
                 .setRequiredNetwork(OneoffTask.NETWORK_STATE_CONNECTED)
                 .setRequiresCharging(false)
                 .setService(ServicioActualizadorPelis.class)
-                .setTag("update_movies_now")
+                .setTag("actualziar_pelis_ahora")
+                .setUpdateCurrent(true)
                 .build();
         GcmNetworkManager.getInstance(contexto).schedule(tarea);
     }
+
+    public static void runDaily(Context context) {
+        PeriodicTask tareaDiaria = new PeriodicTask.Builder()
+                .setPeriod(24 * 60 * 60)
+                .setPersisted(true)
+                .setRequiredNetwork(OneoffTask.NETWORK_STATE_CONNECTED)
+                .setRequiresCharging(false)
+                .setService(ServicioActualizadorPelis.class)
+                .setUpdateCurrent(false)
+                .setTag("actualziar_pelis_diariamente")
+                .build();
+        GcmNetworkManager.getInstance(context).schedule(tareaDiaria);
+    }
+
     @Override
     public int onRunTask(TaskParams taskParams) {
-        PelisApi apiClient = new PelisApi(this, handler);
+        PelisApi apiClient = new PelisApi(this);
         apiClient.getMillorsPelicules(adaptador);
         apiClient.getMillorsPeliculesIngles(adaptador);
         apiClient.getPeliculesMesVistes(adaptador);
