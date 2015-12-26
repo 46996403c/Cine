@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.example.oscarxiii.cine.provider.pelisprovider.PelisproviderColumns;
 
@@ -40,6 +41,16 @@ public class CineFragment extends Fragment implements android.support.v4.app.Loa
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+
+        if (!preferences.contains("first_sync")) {
+            ServicioActualizadorPelis.runNow(getContext());
+            ServicioActualizadorPelis.runDaily(getContext());
+
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putBoolean("first_sync", true);
+            editor.apply();
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -72,6 +83,9 @@ public class CineFragment extends Fragment implements android.support.v4.app.Loa
             getLoaderManager().initLoader(0, null, this);
             listaPeli.setAdapter(adaptador);
 
+            ProgressBar pbProgress = (ProgressBar) rootView.findViewById(R.id.barraProgreso);
+            listaPeli.setEmptyView(pbProgress);
+
             listaPeli.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> padre, View vista, int posicion, long id) {
@@ -88,7 +102,7 @@ public class CineFragment extends Fragment implements android.support.v4.app.Loa
                     refresh();
                 }
             });
-            ServicioActualizadorPelis.runDaily(getContext());
+            //ServicioActualizadorPelis.runDaily(getContext());
             return rootView;
 
         } else if(pref.getString("ver_poster_lista_peliculas", "0").equals("2")){
@@ -114,6 +128,9 @@ public class CineFragment extends Fragment implements android.support.v4.app.Loa
             );
             listaPeli.setAdapter(adaptador);
 
+            ProgressBar pbProgress = (ProgressBar) rootView.findViewById(R.id.barraProgreso);
+            listaPeli.setEmptyView(pbProgress);
+
             listaPeli.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> padre, View vista, int posicion, long id) {
@@ -130,7 +147,7 @@ public class CineFragment extends Fragment implements android.support.v4.app.Loa
                     refresh();
                 }
             });
-            ServicioActualizadorPelis.runDaily(getContext());
+            //ServicioActualizadorPelis.runDaily(getContext());
             return rootView;
         }
         return null;

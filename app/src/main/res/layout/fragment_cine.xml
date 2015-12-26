@@ -43,4 +43,12 @@
         android:layout_alignParentStart="true"
         android:layout_alignTop="@+id/msgRefresh">
     </ListView>
+    <ProgressBar
+        android:id="@+id/barraProgreso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/accent_material_dark" />
 </RelativeLayout>
